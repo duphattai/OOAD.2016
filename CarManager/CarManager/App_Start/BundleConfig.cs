@@ -19,13 +19,26 @@ namespace CarManager
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/site").Include(
+                          "~/Scripts/jquery-{version}.js",
+                          "~/Scripts/bootstrap.js",
+                          "~/Scripts/skrollr.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                        "~/Scripts/select2/select2.js",
+                        "~/Scripts/select2/vi.js",
+                        "~/Scripts/admin.js"));
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/select2.css",
+                      "~/Content/admin.css"
+                      ));
+
         }
     }
 }
