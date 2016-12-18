@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="IdAccount" />
+          </Key>
+          <Property Name="IdAccount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="Pass" Type="varchar" MaxLength="20" />
+          <Property Name="IdRoles" Type="varchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CMND" Type="varchar" MaxLength="20" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BusStation">
+          <Key>
+            <PropertyRef Name="IdBusStation" />
+          </Key>
+          <Property Name="IdBusStation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="IdCar" />
+          </Key>
+          <Property Name="IdCar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarNumberPlate" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TotalSeat" Type="int" />
+          <Property Name="IdCarDiagram" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarDiagram">
+          <Key>
+            <PropertyRef Name="IdCarDiagram" />
+          </Key>
+          <Property Name="IdCarDiagram" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberFloors" Type="int" Nullable="false" />
+          <Property Name="SeatDiagram" Type="varchar(max)" Nullable="false" />
+          <Property Name="TypeSeat" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="IdChannel" />
+          </Key>
+          <Property Name="IdChannel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdBusStationFrom" Type="int" Nullable="false" />
+          <Property Name="IdBusStationTo" Type="int" Nullable="false" />
+          <Property Name="RunTime" Type="int" Nullable="false" />
+          <Property Name="DefaultPrice" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetailChannel">
+          <Key>
+            <PropertyRef Name="IdChannel" />
+            <PropertyRef Name="IdBusStation" />
+          </Key>
+          <Property Name="IdChannel" Type="int" Nullable="false" />
+          <Property Name="IdBusStation" Type="int" Nullable="false" />
+          <Property Name="Time" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="IdOrderDetail" />
+          </Key>
+          <Property Name="IdOrderDetail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrder" Type="int" Nullable="false" />
+          <Property Name="IdSchedule" Type="int" Nullable="false" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="SeatNumber" Type="int" />
+          <Property Name="PaymentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="255" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="IdSchedule" />
+          </Key>
+          <Property Name="IdSchedule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdChannel" Type="int" Nullable="false" />
+          <Property Name="IdCar" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="ArrivalTime" Type="datetime" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Car__IdCarDiagra__164452B1">
+          <End Role="CarDiagram" Type="Self.CarDiagram" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarDiagram">
+              <PropertyRef Name="IdCarDiagram" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="IdCarDiagram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Channel__IdBusSt__1B0907CE">
+          <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
+          <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusStation">
+              <PropertyRef Name="IdBusStation" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="IdBusStationFrom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Channel__IdBusSt__1BFD2C07">
+          <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
+          <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusStation">
+              <PropertyRef Name="IdBusStation" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="IdBusStationTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailCha__IdBus__1FCDBCEB">
+          <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
+          <End Role="DetailChannel" Type="Self.DetailChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusStation">
+              <PropertyRef Name="IdBusStation" />
+            </Principal>
+            <Dependent Role="DetailChannel">
+              <PropertyRef Name="IdBusStation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailCha__IdCha__1ED998B2">
+          <End Role="Channel" Type="Self.Channel" Multiplicity="1" />
+          <End Role="DetailChannel" Type="Self.DetailChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channel">
+              <PropertyRef Name="IdChannel" />
+            </Principal>
+            <Dependent Role="DetailChannel">
+              <PropertyRef Name="IdChannel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__IdOrd__286302EC">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="IdOrder" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__IdSch__29572725">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="IdSchedule" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="IdSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__IdCar__239E4DCF">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="IdCar" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="IdCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__IdChan__22AA2996">
+          <End Role="Channel" Type="Self.Channel" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channel">
+              <PropertyRef Name="IdChannel" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="IdChannel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarManagerModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusStation" EntityType="Self.BusStation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarDiagram" EntityType="Self.CarDiagram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Channel" EntityType="Self.Channel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetailChannel" EntityType="Self.DetailChannel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Car__IdCarDiagra__164452B1" Association="Self.FK__Car__IdCarDiagra__164452B1">
+            <End Role="CarDiagram" EntitySet="CarDiagram" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Channel__IdBusSt__1B0907CE" Association="Self.FK__Channel__IdBusSt__1B0907CE">
+            <End Role="BusStation" EntitySet="BusStation" />
+            <End Role="Channel" EntitySet="Channel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Channel__IdBusSt__1BFD2C07" Association="Self.FK__Channel__IdBusSt__1BFD2C07">
+            <End Role="BusStation" EntitySet="BusStation" />
+            <End Role="Channel" EntitySet="Channel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailCha__IdBus__1FCDBCEB" Association="Self.FK__DetailCha__IdBus__1FCDBCEB">
+            <End Role="BusStation" EntitySet="BusStation" />
+            <End Role="DetailChannel" EntitySet="DetailChannel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailCha__IdCha__1ED998B2" Association="Self.FK__DetailCha__IdCha__1ED998B2">
+            <End Role="Channel" EntitySet="Channel" />
+            <End Role="DetailChannel" EntitySet="DetailChannel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__IdOrd__286302EC" Association="Self.FK__OrderDeta__IdOrd__286302EC">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__IdSch__29572725" Association="Self.FK__OrderDeta__IdSch__29572725">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__IdCar__239E4DCF" Association="Self.FK__Schedule__IdCar__239E4DCF">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__IdChan__22AA2996" Association="Self.FK__Schedule__IdChan__22AA2996">
+            <End Role="Channel" EntitySet="Channel" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="IdAccount" />
+          </Key>
+          <Property Name="IdAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdRoles" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BusStation">
+          <Key>
+            <PropertyRef Name="IdBusStation" />
+          </Key>
+          <Property Name="IdBusStation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Channels" Relationship="Self.FK__Channel__IdBusSt__1B0907CE" FromRole="BusStation" ToRole="Channel" />
+          <NavigationProperty Name="Channels1" Relationship="Self.FK__Channel__IdBusSt__1BFD2C07" FromRole="BusStation" ToRole="Channel" />
+          <NavigationProperty Name="DetailChannels" Relationship="Self.FK__DetailCha__IdBus__1FCDBCEB" FromRole="BusStation" ToRole="DetailChannel" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="IdCar" />
+          </Key>
+          <Property Name="IdCar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarNumberPlate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalSeat" Type="Int32" />
+          <Property Name="IdCarDiagram" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CarDiagram" Relationship="Self.FK__Car__IdCarDiagra__164452B1" FromRole="Car" ToRole="CarDiagram" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__IdCar__239E4DCF" FromRole="Car" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="CarDiagram">
+          <Key>
+            <PropertyRef Name="IdCarDiagram" />
+          </Key>
+          <Property Name="IdCarDiagram" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberFloors" Type="Int32" Nullable="false" />
+          <Property Name="SeatDiagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeSeat" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK__Car__IdCarDiagra__164452B1" FromRole="CarDiagram" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="IdChannel" />
+          </Key>
+          <Property Name="IdChannel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdBusStationFrom" Type="Int32" Nullable="false" />
+          <Property Name="IdBusStationTo" Type="Int32" Nullable="false" />
+          <Property Name="RunTime" Type="Int32" Nullable="false" />
+          <Property Name="DefaultPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="BusStation" Relationship="Self.FK__Channel__IdBusSt__1B0907CE" FromRole="Channel" ToRole="BusStation" />
+          <NavigationProperty Name="BusStation1" Relationship="Self.FK__Channel__IdBusSt__1BFD2C07" FromRole="Channel" ToRole="BusStation" />
+          <NavigationProperty Name="DetailChannels" Relationship="Self.FK__DetailCha__IdCha__1ED998B2" FromRole="Channel" ToRole="DetailChannel" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__IdChan__22AA2996" FromRole="Channel" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="DetailChannel">
+          <Key>
+            <PropertyRef Name="IdChannel" />
+            <PropertyRef Name="IdBusStation" />
+          </Key>
+          <Property Name="IdChannel" Type="Int32" Nullable="false" />
+          <Property Name="IdBusStation" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BusStation" Relationship="Self.FK__DetailCha__IdBus__1FCDBCEB" FromRole="DetailChannel" ToRole="BusStation" />
+          <NavigationProperty Name="Channel" Relationship="Self.FK__DetailCha__IdCha__1ED998B2" FromRole="DetailChannel" ToRole="Channel" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IdOrd__286302EC" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="IdOrderDetail" />
+          </Key>
+          <Property Name="IdOrderDetail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrder" Type="Int32" Nullable="false" />
+          <Property Name="IdSchedule" Type="Int32" Nullable="false" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="SeatNumber" Type="Int32" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__IdOrd__286302EC" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK__OrderDeta__IdSch__29572725" FromRole="OrderDetail" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="IdSchedule" />
+          </Key>
+          <Property Name="IdSchedule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdChannel" Type="Int32" Nullable="false" />
+          <Property Name="IdCar" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="ArrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="Self.FK__Schedule__IdCar__239E4DCF" FromRole="Schedule" ToRole="Car" />
+          <NavigationProperty Name="Channel" Relationship="Self.FK__Schedule__IdChan__22AA2996" FromRole="Schedule" ToRole="Channel" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IdSch__29572725" FromRole="Schedule" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="FK__Channel__IdBusSt__1B0907CE">
+          <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
+          <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusStation">
+              <PropertyRef Name="IdBusStation" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="IdBusStationFrom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Channel__IdBusSt__1BFD2C07">
+          <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
+          <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusStation">
+              <PropertyRef Name="IdBusStation" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="IdBusStationTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailCha__IdBus__1FCDBCEB">
+          <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
+          <End Role="DetailChannel" Type="Self.DetailChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusStation">
+              <PropertyRef Name="IdBusStation" />
+            </Principal>
+            <Dependent Role="DetailChannel">
+              <PropertyRef Name="IdBusStation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Car__IdCarDiagra__164452B1">
+          <End Role="CarDiagram" Type="Self.CarDiagram" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarDiagram">
+              <PropertyRef Name="IdCarDiagram" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="IdCarDiagram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__IdCar__239E4DCF">
+          <End Role="Car" Type="Self.Car" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="IdCar" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="IdCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetailCha__IdCha__1ED998B2">
+          <End Role="Channel" Type="Self.Channel" Multiplicity="1" />
+          <End Role="DetailChannel" Type="Self.DetailChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channel">
+              <PropertyRef Name="IdChannel" />
+            </Principal>
+            <Dependent Role="DetailChannel">
+              <PropertyRef Name="IdChannel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Schedule__IdChan__22AA2996">
+          <End Role="Channel" Type="Self.Channel" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channel">
+              <PropertyRef Name="IdChannel" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="IdChannel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__IdOrd__286302EC">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="IdOrder" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__IdSch__29572725">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="IdSchedule" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="IdSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="BusStations" EntityType="Self.BusStation" />
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="CarDiagrams" EntityType="Self.CarDiagram" />
+          <EntitySet Name="Channels" EntityType="Self.Channel" />
+          <EntitySet Name="DetailChannels" EntityType="Self.DetailChannel" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Schedules" EntityType="Self.Schedule" />
+          <AssociationSet Name="FK__Channel__IdBusSt__1B0907CE" Association="Self.FK__Channel__IdBusSt__1B0907CE">
+            <End Role="BusStation" EntitySet="BusStations" />
+            <End Role="Channel" EntitySet="Channels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Channel__IdBusSt__1BFD2C07" Association="Self.FK__Channel__IdBusSt__1BFD2C07">
+            <End Role="BusStation" EntitySet="BusStations" />
+            <End Role="Channel" EntitySet="Channels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailCha__IdBus__1FCDBCEB" Association="Self.FK__DetailCha__IdBus__1FCDBCEB">
+            <End Role="BusStation" EntitySet="BusStations" />
+            <End Role="DetailChannel" EntitySet="DetailChannels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Car__IdCarDiagra__164452B1" Association="Self.FK__Car__IdCarDiagra__164452B1">
+            <End Role="CarDiagram" EntitySet="CarDiagrams" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__IdCar__239E4DCF" Association="Self.FK__Schedule__IdCar__239E4DCF">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetailCha__IdCha__1ED998B2" Association="Self.FK__DetailCha__IdCha__1ED998B2">
+            <End Role="Channel" EntitySet="Channels" />
+            <End Role="DetailChannel" EntitySet="DetailChannels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Schedule__IdChan__22AA2996" Association="Self.FK__Schedule__IdChan__22AA2996">
+            <End Role="Channel" EntitySet="Channels" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__IdOrd__286302EC" Association="Self.FK__OrderDeta__IdOrd__286302EC">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__IdSch__29572725" Association="Self.FK__OrderDeta__IdSch__29572725">
+            <End Role="Schedule" EntitySet="Schedules" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarManagerModelStoreContainer" CdmEntityContainer="CarManagerEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="CarManagerModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="IdRoles" ColumnName="IdRoles" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusStations">
+            <EntityTypeMapping TypeName="CarManagerModel.BusStation">
+              <MappingFragment StoreEntitySet="BusStation">
+                <ScalarProperty Name="IdBusStation" ColumnName="IdBusStation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarManagerModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="IdCar" ColumnName="IdCar" />
+                <ScalarProperty Name="CarNumberPlate" ColumnName="CarNumberPlate" />
+                <ScalarProperty Name="TotalSeat" ColumnName="TotalSeat" />
+                <ScalarProperty Name="IdCarDiagram" ColumnName="IdCarDiagram" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarDiagrams">
+            <EntityTypeMapping TypeName="CarManagerModel.CarDiagram">
+              <MappingFragment StoreEntitySet="CarDiagram">
+                <ScalarProperty Name="IdCarDiagram" ColumnName="IdCarDiagram" />
+                <ScalarProperty Name="NumberFloors" ColumnName="NumberFloors" />
+                <ScalarProperty Name="SeatDiagram" ColumnName="SeatDiagram" />
+                <ScalarProperty Name="TypeSeat" ColumnName="TypeSeat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Channels">
+            <EntityTypeMapping TypeName="CarManagerModel.Channel">
+              <MappingFragment StoreEntitySet="Channel">
+                <ScalarProperty Name="IdChannel" ColumnName="IdChannel" />
+                <ScalarProperty Name="IdBusStationFrom" ColumnName="IdBusStationFrom" />
+                <ScalarProperty Name="IdBusStationTo" ColumnName="IdBusStationTo" />
+                <ScalarProperty Name="RunTime" ColumnName="RunTime" />
+                <ScalarProperty Name="DefaultPrice" ColumnName="DefaultPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailChannels">
+            <EntityTypeMapping TypeName="CarManagerModel.DetailChannel">
+              <MappingFragment StoreEntitySet="DetailChannel">
+                <ScalarProperty Name="IdChannel" ColumnName="IdChannel" />
+                <ScalarProperty Name="IdBusStation" ColumnName="IdBusStation" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="CarManagerModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="CarManagerModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="IdOrderDetail" ColumnName="IdOrderDetail" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="SeatNumber" ColumnName="SeatNumber" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="CarManagerModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedules">
+            <EntityTypeMapping TypeName="CarManagerModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+                <ScalarProperty Name="IdChannel" ColumnName="IdChannel" />
+                <ScalarProperty Name="IdCar" ColumnName="IdCar" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
