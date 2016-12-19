@@ -1,0 +1,64 @@
+﻿@model CarManager.Areas.Admin.Models.LoginViewModel
+@using LocalResources;
+
+@{
+    ViewBag.Title = @Resource.Login;
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body class="login">
+    <div>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+                    {
+                        <h1>@Resource.Login</h1>
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div>
+                            @Html.ValidationMessageFor(model => model.UserName)
+                            @Html.TextBoxFor(model => model.UserName, new
+                            {
+                                @class = "form-control",
+                                @placeholder = @LocalResources.Resource.Username
+                            })
+                        </div>
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Pass)
+                            @Html.PasswordFor(model => model.Pass, new
+                           {
+                               @class = "form-control",
+                               @placeholder = @LocalResources.Resource.Password
+                           })
+                        </div>
+                        <div class="clearfix">
+                            <input type="submit" class="btn btn-default submit" value="@Resource.Login" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <div>
+                                <h1><i class="fa fa-paw"></i> TABWEB!</h1>
+                                <p>©2016 All Rights Reserved</p>
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/site")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>

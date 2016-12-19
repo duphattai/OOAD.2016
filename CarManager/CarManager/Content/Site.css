@@ -1,1 +1,16 @@
-﻿
+﻿.login_wrapper{
+    width: 250px;
+    margin: 50px auto;
+}
+.login_content div,
+.login_content h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+span.field-validation-error{
+    color: red;
+}
+.validation-summary-errors li{
+    color: red;
+}
