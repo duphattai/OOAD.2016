@@ -18,7 +18,7 @@ CREATE TABLE Account
 (
 	IdAccount	int PRIMARY KEY IDENTITY (1,1),
 	UserName	varchar(100),
-	Pass		varchar(20),
+	Pass		varchar(255),
 	IdRoles		varchar(100),
 	FullName    nvarchar(255),
 	CMND		varchar(20),

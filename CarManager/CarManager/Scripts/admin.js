@@ -412,3 +412,7 @@ function ChangeUrl(object) {
     }
 }
 
+// Tooltip for icon-help
+$(function () {
+    $(".icon-help").tooltip();
+});

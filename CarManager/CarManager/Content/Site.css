@@ -14,3 +14,17 @@ span.field-validation-error{
 .validation-summary-errors li{
     color: red;
 }
+
+/* My Admin */
+.thead-inverse th {
+    color: #fff;
+    background-color: #373a3c;
+}
+.icon-help{
+    position: absolute;
+    display: inline-block;
+    top: 6px;
+    right: 0;
+    font-size: 15px;
+    color: #3c8dbc;
+}

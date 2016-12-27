@@ -1,0 +1,32 @@
+﻿@model CarManager.Areas.Admin.Models.CarDiagramModel
+
+@Html.HiddenFor(model => model.IdCarDiagram)
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @readonly = true })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.NumberFloors, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.NumberFloors, new { @class = "form-control", @type = "number", @readonly = true })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.TypeSeat, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.TypeSeat, new { @class = "form-control", @readonly = true })
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-2 col-sm-3 col-xs-12" style="text-align: right">
+        @Html.LabelFor(model => model.SeatDiagram, new { @class = "control-label" })
+        <div class="icon-help" title="@Html.Raw(Resource.RequiredCarDiagram)">
+            <i class="fa fa-question-circle" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextAreaFor(model => model.SeatDiagram, new { @class = "form-control", rows = 10, @readonly = true })
+    </div>
+</div>

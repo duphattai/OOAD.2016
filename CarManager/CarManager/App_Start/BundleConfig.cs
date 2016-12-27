@@ -28,7 +28,8 @@ namespace CarManager
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                         "~/Scripts/select2/select2.js",
                         "~/Scripts/select2/vi.js",
-                        "~/Scripts/admin.js"));
+                        "~/Scripts/admin.js",
+                        "~/Scripts/jquery-ui.js"));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -36,7 +37,8 @@ namespace CarManager
                       "~/Content/site.css",
                       "~/Content/font-awesome.css",
                       "~/Content/select2.css",
-                      "~/Content/admin.css"
+                      "~/Content/admin.css",
+                      "~/Content/jquery-ui.css"
                       ));
 
         }

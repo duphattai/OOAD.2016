@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Hoc Tap\Nam 5 - KH I\OOAD\Project\CarManager\DataLayer\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\Hoc Tap\Nam 5 - KH I\OOAD\Project\OOAD.2016.git\CarManager\DataLayer\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

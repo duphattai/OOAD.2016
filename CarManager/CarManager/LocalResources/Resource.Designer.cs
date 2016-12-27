@@ -70,6 +70,96 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hành động.
+        /// </summary>
+        public static string Action {
+            get {
+                return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quay lại danh sách.
+        /// </summary>
+        public static string BackToList {
+            get {
+                return ResourceManager.GetString("BackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không thể thêm dữ liệu.
+        /// </summary>
+        public static string CannotInsertData {
+            get {
+                return ResourceManager.GetString("CannotInsertData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sơ đồ xe.
+        /// </summary>
+        public static string CarDiagram {
+            get {
+                return ResourceManager.GetString("CarDiagram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tạo mới.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chi tiết.
+        /// </summary>
+        public static string Detail {
+            get {
+                return ResourceManager.GetString("Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sửa.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã.
+        /// </summary>
+        public static string ID {
+            get {
+                return ResourceManager.GetString("ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trường {0} nhập không đúng định dạng.
+        /// </summary>
+        public static string InvalidFormat {
+            get {
+                return ResourceManager.GetString("InvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đăng nhập.
         /// </summary>
         public static string Login {
@@ -88,11 +178,47 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tên {0}.
+        /// </summary>
+        public static string NameOf {
+            get {
+                return ResourceManager.GetString("NameOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Số tầng.
+        /// </summary>
+        public static string NumberFloors {
+            get {
+                return ResourceManager.GetString("NumberFloors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trang {0} trong {1}.
+        /// </summary>
+        public static string PaginationTxt {
+            get {
+                return ResourceManager.GetString("PaginationTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mật khẩu.
         /// </summary>
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đây là sơ đồ ghế của xe khách, hệ thống sẽ dựa vào sơ đồ để hiển thị và xác định các ghế trong xe. Sơ đồ ghế nhập theo định dạng: x&lt;vi trí ghế&gt;&lt;khoản cách&gt;x&lt;vi trí ghế&gt;&lt;xuống dòng | khoản cách&gt;.
+        /// </summary>
+        public static string RequiredCarDiagram {
+            get {
+                return ResourceManager.GetString("RequiredCarDiagram", resourceCulture);
             }
         }
         
@@ -106,11 +232,47 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lưu lại.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sơ đồ ghế.
+        /// </summary>
+        public static string SeatDiagram {
+            get {
+                return ResourceManager.GetString("SeatDiagram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loại ghế.
+        /// </summary>
+        public static string TypeSeat {
+            get {
+                return ResourceManager.GetString("TypeSeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tên đăng nhập.
         /// </summary>
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xem.
+        /// </summary>
+        public static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
             }
         }
     }

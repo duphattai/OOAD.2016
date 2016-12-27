@@ -7,6 +7,8 @@ using System.Reflection;
 using CarManager.Controllers;
 using Autofac;
 using Autofac.Integration.Mvc;
+using AutoMapper;
+using CarManager.Infrastructure.Mapping;
 
 
 namespace CarManager.App_Start
@@ -24,17 +26,20 @@ namespace CarManager.App_Start
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             builder.RegisterType<DataLayer.CarManagerEntities>().As<DataLayer.CarManagerEntities>().InstancePerLifetimeScope();
-            //auto mapper
-            //builder.Register(
-            //    c => new MapperConfiguration(cfg =>
-            //    {
-            //        cfg.AddProfile(new DomainToViewModelMappingProfile());
-            //        cfg.AddProfile(new ViewModelToDomainMappingProfile());
-            //        cfg.AddProfile(new DomainToFrontEndViewModelMappingProfile());
-            //    }))
-            //    .AsSelf()
-            //    .SingleInstance();
-
+            // register auto mapper
+            builder.Register(
+                c => new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new DomainToViewModelMappingProfile());
+                    cfg.AddProfile(new ViewModelToDomainMappingProfile());
+                }))
+                .AsSelf()
+                .SingleInstance();
+            builder.Register(
+              c => c.Resolve<MapperConfiguration>().CreateMapper(c.Resolve))
+              .As<IMapper>()
+              .InstancePerLifetimeScope();
+            // end register mapper
 
             //service
             builder.RegisterType<RoleService>().As<IRoleService>().InstancePerLifetimeScope();

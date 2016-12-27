@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CarManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CarManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="IdAccount" />
           </Key>
           <Property Name="IdAccount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="100" />
-          <Property Name="Pass" Type="varchar" MaxLength="20" />
+          <Property Name="Pass" Type="varchar" MaxLength="255" />
           <Property Name="IdRoles" Type="varchar" MaxLength="100" />
           <Property Name="FullName" Type="nvarchar" MaxLength="255" />
           <Property Name="CMND" Type="varchar" MaxLength="20" />
@@ -42,6 +42,7 @@
           <Property Name="NumberFloors" Type="int" Nullable="false" />
           <Property Name="SeatDiagram" Type="varchar(max)" Nullable="false" />
           <Property Name="TypeSeat" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Channel">
           <Key>
@@ -259,8 +260,7 @@
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -270,7 +270,7 @@
           </Key>
           <Property Name="IdAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Pass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Pass" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="IdRoles" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -307,6 +307,7 @@
           <Property Name="SeatDiagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TypeSeat" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cars" Relationship="Self.FK__Car__IdCarDiagra__164452B1" FromRole="CarDiagram" ToRole="Car" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Channel">
           <Key>
@@ -577,6 +578,7 @@
           <EntitySetMapping Name="CarDiagrams">
             <EntityTypeMapping TypeName="CarManagerModel.CarDiagram">
               <MappingFragment StoreEntitySet="CarDiagram">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdCarDiagram" ColumnName="IdCarDiagram" />
                 <ScalarProperty Name="NumberFloors" ColumnName="NumberFloors" />
                 <ScalarProperty Name="SeatDiagram" ColumnName="SeatDiagram" />

@@ -45,7 +45,7 @@
                                             @Html.ActionLink("Danh sách xe", "Index", "Groups")
                                         </li>
                                         <li>
-                                            @Html.ActionLink("Sơ đồ xe khách", "Create", "Groups")
+                                            @Html.ActionLink(@Resource.CarDiagram, "Index", "CarDiagram")
                                         </li>
                                     </ul>
                                 </li>
@@ -139,7 +139,7 @@
                                         <a href="javascript:;">Help</a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Logout", "Login")">
+                                        <a href="@Url.Action("Logout", "Account")">
                                             <i class="fa fa-sign-out pull-right"></i>Đăng xuất
                                         </a>
                                     </li>

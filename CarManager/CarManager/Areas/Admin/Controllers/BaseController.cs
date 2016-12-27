@@ -33,10 +33,9 @@ namespace CarManager.Areas.Admin.Controllers
             string controller = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
             string action = filterContext.ActionDescriptor.ActionName;
 
-            if (Session["UserRoles"] == null)
+            if (Session["UserRoles"] == null && controller != "Account" && action != "Login")
             {
-                filterContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
+                filterContext.Result = new RedirectToRouteResult("Admin_Login", new RouteValueDictionary { });
             }
 
             base.OnActionExecuting(filterContext);

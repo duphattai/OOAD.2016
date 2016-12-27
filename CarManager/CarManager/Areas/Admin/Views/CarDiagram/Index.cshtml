@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<CarManager.Areas.Admin.Models.CarDiagramItemModel>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = Resource.CarDiagram;
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>@Resource.CarDiagram</h3>
+    </div>
+    <div class="title_right">
+        <div class="pull-right">
+            @Html.ActionLink(@Resource.Create, "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+<div class="main-content">
+    <div id="list">
+        <table class="table table-hover">
+            <thead class="thead-inverse">
+                <tr>
+                    <th class="col-lg-1">
+                        @Resource.ID
+                    </th>
+                    <th class="col-lg-7">
+                        @string.Format(@Resource.NameOf, Resource.CarDiagram.ToLower())
+                    </th>
+                    <th class="col-lg-2">
+                        @Resource.TypeSeat
+                    </th>
+                    <th class="col-lg-2">
+                        @Resource.Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdCarDiagram)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeSeat)
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="@Url.Action("Edit", new { id = item.IdCarDiagram })" class="btn btn-default">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i> @Resource.Edit
+                                </a>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+
+                                <ul class="dropdown-menu btn-dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="@Url.Action("Detail", new { id = item.IdCarDiagram })">
+                                            <i class="fa fa-eye" aria-hidden="true"></i> @Resource.View
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Delete", new { id = item.IdCarDiagram })">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i> @Resource.Delete
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+        </table>
+
+        <div class="pull-left">
+            @string.Format(Resource.PaginationTxt, Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber, @Model.PageCount)
+        </div>
+        <div class="pull-right">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
+</div>
