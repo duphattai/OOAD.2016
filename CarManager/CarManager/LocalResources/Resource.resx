@@ -123,14 +123,23 @@
   <data name="Action" xml:space="preserve">
     <value>Hành động</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>Quay lại danh sách</value>
   </data>
   <data name="CannotInsertData" xml:space="preserve">
     <value>Không thể thêm dữ liệu</value>
   </data>
+  <data name="Car" xml:space="preserve">
+    <value>Xe khách</value>
+  </data>
   <data name="CarDiagram" xml:space="preserve">
     <value>Sơ đồ xe</value>
+  </data>
+  <data name="CarNumberPlate" xml:space="preserve">
+    <value>Biển số xe</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Tạo mới</value>
@@ -149,6 +158,9 @@
   </data>
   <data name="InvalidFormat" xml:space="preserve">
     <value>Trường {0} nhập không đúng định dạng</value>
+  </data>
+  <data name="ListOf" xml:space="preserve">
+    <value>Danh sách {0}</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Đăng nhập</value>
@@ -179,6 +191,9 @@
   </data>
   <data name="SeatDiagram" xml:space="preserve">
     <value>Sơ đồ ghế</value>
+  </data>
+  <data name="TotalSeat" xml:space="preserve">
+    <value>Tổng số ghế</value>
   </data>
   <data name="TypeSeat" xml:space="preserve">
     <value>Loại ghế</value>

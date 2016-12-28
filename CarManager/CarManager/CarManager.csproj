@@ -179,11 +179,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarDiagramController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Models\AccountModels.cs" />
     <Compile Include="Areas\Admin\Models\CarDiagramModel.cs" />
+    <Compile Include="Areas\Admin\Models\CarModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,6 +205,7 @@
     <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\Images\bed-white.png" />
     <Content Include="Content\Images\img.jpg" />
     <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jquery-ui.css" />
@@ -234,6 +237,11 @@
     <Content Include="Areas\Admin\Views\CarDiagram\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CarDiagram\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\CarDiagramModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Car\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Car\CarsList.cshtml" />
+    <Content Include="Areas\Admin\Views\Car\InsertOrUpdate.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\CarModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Car\SeatChart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

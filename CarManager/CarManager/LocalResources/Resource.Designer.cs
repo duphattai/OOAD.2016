@@ -79,6 +79,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tất cả.
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quay lại danh sách.
         /// </summary>
         public static string BackToList {
@@ -97,11 +106,29 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xe khách.
+        /// </summary>
+        public static string Car {
+            get {
+                return ResourceManager.GetString("Car", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sơ đồ xe.
         /// </summary>
         public static string CarDiagram {
             get {
                 return ResourceManager.GetString("CarDiagram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Biển số xe.
+        /// </summary>
+        public static string CarNumberPlate {
+            get {
+                return ResourceManager.GetString("CarNumberPlate", resourceCulture);
             }
         }
         
@@ -156,6 +183,15 @@ namespace LocalResources {
         public static string InvalidFormat {
             get {
                 return ResourceManager.GetString("InvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danh sách {0}.
+        /// </summary>
+        public static string ListOf {
+            get {
+                return ResourceManager.GetString("ListOf", resourceCulture);
             }
         }
         
@@ -246,6 +282,15 @@ namespace LocalResources {
         public static string SeatDiagram {
             get {
                 return ResourceManager.GetString("SeatDiagram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tổng số ghế.
+        /// </summary>
+        public static string TotalSeat {
+            get {
+                return ResourceManager.GetString("TotalSeat", resourceCulture);
             }
         }
         

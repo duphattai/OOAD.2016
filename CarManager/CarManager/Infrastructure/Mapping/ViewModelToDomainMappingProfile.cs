@@ -18,6 +18,7 @@ namespace CarManager.Infrastructure.Mapping
         protected override void Configure()
         {
             CreateMap<CarDiagramModel, CarDiagram>();
+            CreateMap<CarModel, Car>();
         }
     }
 }

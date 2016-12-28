@@ -42,7 +42,7 @@
                                     <a><i class="fa fa-object-group"></i>Quản lý xe khách<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>
-                                            @Html.ActionLink("Danh sách xe", "Index", "Groups")
+                                            @Html.ActionLink(string.Format(Resource.ListOf, Resource.Car), "Index", "Car")
                                         </li>
                                         <li>
                                             @Html.ActionLink(@Resource.CarDiagram, "Index", "CarDiagram")

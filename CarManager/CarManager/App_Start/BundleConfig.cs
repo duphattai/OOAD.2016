@@ -34,11 +34,11 @@ namespace CarManager
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
                       "~/Content/font-awesome.css",
                       "~/Content/select2.css",
                       "~/Content/admin.css",
-                      "~/Content/jquery-ui.css"
+                      "~/Content/jquery-ui.css",
+                      "~/Content/site.css"
                       ));
 
         }

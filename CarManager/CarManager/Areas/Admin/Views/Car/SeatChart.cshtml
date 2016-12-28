@@ -1,0 +1,36 @@
+﻿@model CarManager.Areas.Admin.Models.SeatChartModel
+
+<table class="table">
+    @for (int i = 1; i <= Model.NumberFloors; i++)
+    {
+        <tr>
+            <td style="vertical-align:middle">
+                @string.Format("Tầng {0}", i)
+            </td>
+            <td>
+                <table class="table car_chart">
+                    @foreach (var row in Model.SeatsList)
+                    {
+                        <tr>
+                            @foreach (var seat in row)
+                            {
+                                <td>
+                                    <a href="javascript:void(0)" class="link_icon_seat">
+                                        <img class="icon_seat" src="~/Content/Images/bed-white.png" />
+                                        <span class="seat_number">
+                                            @seat
+                                        </span>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+    }
+        
+</table>
+
+
+
