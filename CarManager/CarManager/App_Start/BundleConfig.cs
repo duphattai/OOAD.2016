@@ -23,6 +23,8 @@ namespace CarManager
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
                           "~/Scripts/jquery-{version}.js",
                           "~/Scripts/bootstrap.js",
+                          "~/Scripts/bootstrap-confirmation.js",
+                          "~/Scripts/jquery.unobtrusive-ajax.js",
                           "~/Scripts/skrollr.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(

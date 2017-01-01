@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
+using System.Data.SqlClient;
 
 namespace ServiceLayer.Service
 {
@@ -16,6 +17,8 @@ namespace ServiceLayer.Service
         string Insert(CarDiagram entity);
 
         string Update(CarDiagram model);
+
+        string Delete(int id);
     }
     public class CarDiagramService : ICarDiagramService
     {
@@ -56,6 +59,23 @@ namespace ServiceLayer.Service
             {
                 var entity = Get(model.IdCarDiagram);
                 _database.Entry(entity).CurrentValues.SetValues(model);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string Delete(int id)
+        {
+            try 
+            {
+                var entity = _database.CarDiagrams.Find(id);
+ 
+                _database.CarDiagrams.Remove(entity);
                 _database.SaveChanges();
 
                 return null;

@@ -33,6 +33,8 @@
           <Property Name="CarNumberPlate" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="TotalSeat" Type="int" />
           <Property Name="IdCarDiagram" Type="int" Nullable="false" />
+          <Property Name="Driver1" Type="nvarchar(max)" />
+          <Property Name="Driver2" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CarDiagram">
           <Key>
@@ -73,6 +75,8 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
           <Property Name="OrderDate" Type="datetime" />
           <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="PickUp" Type="nvarchar(max)" />
+          <Property Name="Destination" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -297,6 +301,8 @@
           <Property Name="IdCarDiagram" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CarDiagram" Relationship="Self.FK__Car__IdCarDiagra__164452B1" FromRole="Car" ToRole="CarDiagram" />
           <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__IdCar__239E4DCF" FromRole="Car" ToRole="Schedule" />
+          <Property Name="Driver1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Driver2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CarDiagram">
           <Key>
@@ -345,6 +351,8 @@
           <Property Name="OrderDate" Type="DateTime" Precision="3" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IdOrd__286302EC" FromRole="Order" ToRole="OrderDetail" />
+          <Property Name="PickUp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Destination" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -568,6 +576,8 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="CarManagerModel.Car">
               <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="Driver2" ColumnName="Driver2" />
+                <ScalarProperty Name="Driver1" ColumnName="Driver1" />
                 <ScalarProperty Name="IdCar" ColumnName="IdCar" />
                 <ScalarProperty Name="CarNumberPlate" ColumnName="CarNumberPlate" />
                 <ScalarProperty Name="TotalSeat" ColumnName="TotalSeat" />
@@ -610,6 +620,8 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="CarManagerModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="PickUp" ColumnName="PickUp" />
                 <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
                 <ScalarProperty Name="OrderName" ColumnName="OrderName" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />

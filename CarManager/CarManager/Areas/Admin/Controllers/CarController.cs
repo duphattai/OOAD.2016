@@ -147,8 +147,20 @@ namespace CarManager.Areas.Admin.Controllers
 
         public ActionResult Detail(int id)
         {
-            var model = _mapper.Map<CarDiagramModel>(_carDiagramService.Get(id));
+            ViewBag.CarDiagrams = new SelectList(_carDiagramService.GetList(), "IdCarDiagram", "Name");
+            var model = _mapper.Map<CarModel>(_carService.Get(id));
             return View(model);
+        }
+
+        public ActionResult Delete(int id, int page = 1)
+        {
+            string error = _carService.Delete(id);
+            if (error != null)
+            {
+                return Content(null);
+            }
+
+            return RedirectToAction("CarsList", new { page = page });
         }
     }
 }

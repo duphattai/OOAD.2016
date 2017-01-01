@@ -35,7 +35,13 @@ namespace CarManager.Areas.Admin.Models
 
         [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Resource))]
         [Display(Name = "CarDiagram", ResourceType = typeof(LocalResources.Resource))]
-        public int IdCarDiagram { get; set; }   
+        public int IdCarDiagram { get; set; }
+
+        [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Resource))]
+        [Display(Name = "Driver", ResourceType = typeof(LocalResources.Resource))]
+        public string Driver1 { get; set; }
+        [Display(Name = "Stewardess", ResourceType = typeof(LocalResources.Resource))]
+        public string Driver2 { get; set; }
     }
 
     public class SeatChartModel

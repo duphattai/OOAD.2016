@@ -26,6 +26,12 @@
         </div>
     }
 
+    <div class="pull-left">
+        <h5>
+            <span class="field-validation-error" id="error_message">
+            </span>
+        </h5>
+    </div>
     <div id="list">
        @{Html.RenderAction("CarsList", "Car");}
     </div>
@@ -36,6 +42,19 @@
         $('#IdCarDiagram').change(function () {
             $('#filter_div').submit();
         });
+
+        // delete item
+        $('.delete_item').on('confirmed.bs.confirmation', function (event) {
+
+            var deleteUrl = '@Url.Action("Delete")' + "/" + $(this).attr('id');
+            $.post(deleteUrl, function (data) {
+                if (data.length != 0) {
+                    $('#list').html(data);
+                } else {
+                    $('#error_message').html('@Resource.ExistForeignKeyError');
+                }
+            });
+        })
 
         $(document).ready(function () {
             $('select').select2({

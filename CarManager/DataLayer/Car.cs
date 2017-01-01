@@ -24,6 +24,8 @@ namespace DataLayer
         public string CarNumberPlate { get; set; }
         public Nullable<int> TotalSeat { get; set; }
         public int IdCarDiagram { get; set; }
+        public string Driver1 { get; set; }
+        public string Driver2 { get; set; }
     
         public virtual CarDiagram CarDiagram { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

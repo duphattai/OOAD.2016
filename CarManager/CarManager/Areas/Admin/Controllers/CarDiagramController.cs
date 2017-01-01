@@ -24,13 +24,18 @@ namespace CarManager.Areas.Admin.Controllers
         }
 
         // GET: Admin/CarDiagram
-        public ActionResult Index(int page = 1)
+        public ActionResult Index()
         {
-            var model = _mapper.Map<IEnumerable<CarDiagramItemModel>>(_carDiagramService.GetList())
-                .ToPagedList(page, _pageSize);
-            return View(model);
+            return View();
         }
 
+           
+        public PartialViewResult CarDiagramsList(int page = 1)
+        {
+            var model = _mapper.Map<IEnumerable<CarDiagramItemModel>>(_carDiagramService.GetList())
+                            .ToPagedList(page, _pageSize);
+            return PartialView(model);
+        }
 
         public ActionResult Create()
         {
@@ -93,6 +98,18 @@ namespace CarManager.Areas.Admin.Controllers
         {
             var model = _mapper.Map<CarDiagramModel>(_carDiagramService.Get(id));
             return View(model);
+        }
+
+
+        public ActionResult Delete(int id, int page = 1)
+        {
+            string error = _carDiagramService.Delete(id);
+            if (error != null)
+            {
+                return Content(null);
+            }
+
+            return RedirectToAction("CarDiagramsList", new { page = page });
         }
     }
 }

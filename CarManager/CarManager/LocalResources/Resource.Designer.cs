@@ -97,6 +97,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hủy bỏ.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Không thể thêm dữ liệu.
         /// </summary>
         public static string CannotInsertData {
@@ -151,6 +160,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bạn muốn xóa?.
+        /// </summary>
+        public static string DeleteConfirmation {
+            get {
+                return ResourceManager.GetString("DeleteConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chi tiết.
         /// </summary>
         public static string Detail {
@@ -160,11 +178,38 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tài xế.
+        /// </summary>
+        public static string Driver {
+            get {
+                return ResourceManager.GetString("Driver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sửa.
         /// </summary>
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dữ liệu không tồn tại.
+        /// </summary>
+        public static string EntityNotExist {
+            get {
+                return ResourceManager.GetString("EntityNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không thể xóa dữ liệu đang được sử dụng. .
+        /// </summary>
+        public static string ExistForeignKeyError {
+            get {
+                return ResourceManager.GetString("ExistForeignKeyError", resourceCulture);
             }
         }
         
@@ -282,6 +327,15 @@ namespace LocalResources {
         public static string SeatDiagram {
             get {
                 return ResourceManager.GetString("SeatDiagram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiếp viên.
+        /// </summary>
+        public static string Stewardess {
+            get {
+                return ResourceManager.GetString("Stewardess", resourceCulture);
             }
         }
         

@@ -7,27 +7,25 @@
 <div class="form-group">
     @Html.LabelFor(model => model.CarNumberPlate, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
     <div class="col-md-10 col-sm-9 col-xs-12">
-        @Html.TextBoxFor(model => model.CarNumberPlate, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.CarNumberPlate)
+        @Html.TextBoxFor(model => model.CarNumberPlate, new { @class = "form-control", @readonly = true })
     </div>
 </div>
 <div class="form-group">
     @Html.LabelFor(model => model.Driver1, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
     <div class="col-md-10 col-sm-9 col-xs-12">
-        @Html.TextBoxFor(model => model.Driver1, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Driver1)
+        @Html.TextBoxFor(model => model.Driver1, new { @class = "form-control", @readonly = true })
     </div>
 </div>
 <div class="form-group">
     @Html.LabelFor(model => model.Driver2, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
     <div class="col-md-10 col-sm-9 col-xs-12">
-        @Html.TextBoxFor(model => model.Driver2, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.Driver2, new { @class = "form-control", @readonly = true })
     </div>
 </div>
 <div class="form-group">
     @Html.LabelFor(model => model.IdCarDiagram, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
     <div class="col-md-10 col-sm-9 col-xs-12">
-        @Html.DropDownListFor(model => model.IdCarDiagram, carDiagrams, new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.IdCarDiagram, carDiagrams, new { @class = "form-control", @readonly = true })
         @Html.ValidationMessageFor(model => model.IdCarDiagram)
     </div>
 </div>
@@ -40,6 +38,6 @@
 </div>
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10 col-sm-offset-3 col-sm-9 col-xs-12" id="placeSeat">
-        @{Html.RenderAction("SeatChart", "Car", new { IdCarDiagram = IdCarDiagram });}
+        @{Html.RenderAction("SeatChart", "Car", new { IdCarDiagram = IdCarDiagram, @readonly = true });}
     </div>
 </div>

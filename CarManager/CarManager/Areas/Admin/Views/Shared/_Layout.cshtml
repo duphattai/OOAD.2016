@@ -172,5 +172,25 @@
     @Scripts.Render("~/bundles/admin")
 
     @RenderSection("scripts", required: false)
+    <script>
+
+    // setup boostrap confirmation
+    $(document).ready(function () {
+        $('[data-toggle="confirmation"]').confirmation({
+            placement: 'left',
+            title: '@Html.Raw(Resource.DeleteConfirmation)',
+            btnOkLabel: '@Html.Raw(Resource.Delete)',
+            btnCancelLabel: '@Html.Raw(Resource.Cancel)'
+            });
+        });
+
+        $(document).click(function (event) {
+            if (!$(event.target).closest('.confirmation.popover').length) {
+                $('[data-toggle="confirmation"]').confirmation('hide');
+            }
+        })
+
+        // end
+    </script>
 </body>
 </html>

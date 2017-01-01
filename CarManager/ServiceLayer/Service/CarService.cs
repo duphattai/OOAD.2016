@@ -66,7 +66,7 @@ namespace ServiceLayer.Service
             {
                 var entity = _database.Cars.Find(id);
                 _database.Cars.Remove(entity);
-
+                _database.SaveChanges();
                 return null;
             }
             catch (Exception ex)

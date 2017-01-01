@@ -219,6 +219,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\admin.js" />
+    <Content Include="Scripts\bootstrap-confirmation.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -242,11 +243,15 @@
     <Content Include="Areas\Admin\Views\Car\InsertOrUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\CarModel.cshtml" />
     <Content Include="Areas\Admin\Views\Car\SeatChart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\CarModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Car\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\CarDiagram\CarDiagramsList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
