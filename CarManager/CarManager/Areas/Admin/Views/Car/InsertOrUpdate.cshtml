@@ -51,7 +51,6 @@
             $('select').select2({
                 theme: "bootstrap",
             }).on("change", function () {
-                alert($(this).val())
                 // mostly used event, fired to the original element when the value changes
                 $.post('@Url.Action("SeatChart", "Car")', { IdCarDiagram: $(this).val() }, function (data) {
                     $("#placeSeat").html(data);

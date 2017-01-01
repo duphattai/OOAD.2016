@@ -1,36 +1,46 @@
 ﻿@model CarManager.Areas.Admin.Models.SeatChartModel
 
-<table class="table">
-    @for (int i = 1; i <= Model.NumberFloors; i++)
-    {
-        <tr>
-            <td style="vertical-align:middle">
-                @string.Format("Tầng {0}", i)
-            </td>
-            <td>
-                <table class="table car_chart">
-                    @foreach (var row in Model.SeatsList)
-                    {
-                        <tr>
-                            @foreach (var seat in row)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.TotalSeat, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.TotalSeat, new { @class = "form-control", @readonly = true })
+        @Html.ValidationMessageFor(model => model.TotalSeat)
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10 col-sm-offset-3 col-sm-9 col-xs-12">
+        <table class="table">
+            @for (int i = 1; i <= Model.NumberFloors; i++)
+            {
+                <tr>
+                    <td style="vertical-align:middle">
+                        @string.Format("Tầng {0}", i)
+                    </td>
+                    <td>
+                        <table class="table car_chart">
+                            @foreach (var row in Model.SeatsList)
                             {
-                                <td>
-                                    <a href="javascript:void(0)" class="link_icon_seat">
-                                        <img class="icon_seat" src="~/Content/Images/bed-white.png" />
-                                        <span class="seat_number">
-                                            @seat
-                                        </span>
-                                    </a>
-                                </td>
+                                <tr>
+                                    @foreach (var seat in row)
+                                    {
+                                        <td>
+                                            <a href="javascript:void(0)" class="link_icon_seat">
+                                                <img class="icon_seat" src="~/Content/Images/bed-white.png" />
+                                                <span class="seat_number">
+                                                    @seat
+                                                </span>
+                                            </a>
+                                        </td>
+                                    }
+                                </tr>
                             }
-                        </tr>
-                    }
-                </table>
-            </td>
-        </tr>
-    }
-        
-</table>
+                        </table>
+                    </td>
+                </tr>
+            }
 
-
+        </table>
+    </div>
+</div>
 

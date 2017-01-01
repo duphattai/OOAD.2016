@@ -30,12 +30,11 @@ namespace CarManager.Areas.Admin.Models
         [Display(Name = "CarNumberPlate", ResourceType = typeof(LocalResources.Resource))]
         public string CarNumberPlate { get; set; }
 
-        [Display(Name = "TotalSeat", ResourceType = typeof(LocalResources.Resource))]
-        public int TotalSeat { get; set; }
-
         [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Resource))]
         [Display(Name = "CarDiagram", ResourceType = typeof(LocalResources.Resource))]
         public int IdCarDiagram { get; set; }
+
+        public int TotalSeat { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Resource))]
         [Display(Name = "Driver", ResourceType = typeof(LocalResources.Resource))]
@@ -48,6 +47,9 @@ namespace CarManager.Areas.Admin.Models
     {
         public int NumberFloors { get; set; }
         public List<IEnumerable<string>> SeatsList { get; set; }
+
+        [Display(Name = "TotalSeat", ResourceType = typeof(LocalResources.Resource))]
+        public int TotalSeat { get; set; }
 
         public SeatChartModel()
         {

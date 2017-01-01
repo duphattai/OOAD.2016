@@ -46,8 +46,10 @@ namespace CarManager.Areas.Admin.Controllers
             {
                 var carDiagram = _carDiagramService.Get(item.IdCarDiagram);
                 if (carDiagram != null)
+                {
                     item.CarDiagramName = carDiagram.Name;
-                
+                    item.TypeSeat = carDiagram.TypeSeat;
+                }
             }
             ViewBag.IdCarDiagram = filter.IdCarDiagram;
 
@@ -56,7 +58,7 @@ namespace CarManager.Areas.Admin.Controllers
 
         public ActionResult SeatChart(int? IdCarDiagram = null)
         {
-            var model = new SeatChartModel();
+            var model = new SeatChartModel() { TotalSeat = 0 };
             if (IdCarDiagram != null)
             {
                 var carDiagram = _carDiagramService.Get(IdCarDiagram.Value);
@@ -65,11 +67,15 @@ namespace CarManager.Areas.Admin.Controllers
                     model.NumberFloors = carDiagram.NumberFloors;
 
                     var rows = carDiagram.SeatDiagram.Split('\n').Where(o => !string.IsNullOrEmpty(o));
+            
                     foreach (var r in rows)
                     {
                         var seats = r.Split(' ').Select(o=> o.Replace("x", ""));
                         model.SeatsList.Add(seats);
+
+                        model.TotalSeat += seats.Count();
                     }
+                    model.TotalSeat *= model.NumberFloors;
                 }
             }
 
