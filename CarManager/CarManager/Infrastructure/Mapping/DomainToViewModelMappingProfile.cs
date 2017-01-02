@@ -27,6 +27,8 @@ namespace CarManager.Infrastructure.Mapping
 
             // bus station
             CreateMap<BusStation, BusStationModel>();
+
+            CreateMap<Channel, ChannelItemModel>();
         }
     }
 }

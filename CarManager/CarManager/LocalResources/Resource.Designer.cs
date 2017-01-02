@@ -106,6 +106,24 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bến xe đi.
+        /// </summary>
+        public static string BusStationFrom {
+            get {
+                return ResourceManager.GetString("BusStationFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bến xe đến.
+        /// </summary>
+        public static string BusStationTo {
+            get {
+                return ResourceManager.GetString("BusStationTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hủy bỏ.
         /// </summary>
         public static string Cancel {
@@ -147,6 +165,15 @@ namespace LocalResources {
         public static string CarNumberPlate {
             get {
                 return ResourceManager.GetString("CarNumberPlate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tuyến đi.
+        /// </summary>
+        public static string Channel {
+            get {
+                return ResourceManager.GetString("Channel", resourceCulture);
             }
         }
         
@@ -313,6 +340,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đơn giá.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đây là sơ đồ ghế của xe khách, hệ thống sẽ dựa vào sơ đồ để hiển thị và xác định các ghế trong xe. Sơ đồ ghế nhập theo định dạng: x&lt;vi trí ghế&gt;&lt;khoản cách&gt;x&lt;vi trí ghế&gt;&lt;xuống dòng | khoản cách&gt;.
         /// </summary>
         public static string RequiredCarDiagram {
@@ -327,6 +363,15 @@ namespace LocalResources {
         public static string RequiredError {
             get {
                 return ResourceManager.GetString("RequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thời gian đi.
+        /// </summary>
+        public static string RunTime {
+            get {
+                return ResourceManager.GetString("RunTime", resourceCulture);
             }
         }
         

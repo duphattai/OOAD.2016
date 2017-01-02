@@ -132,6 +132,12 @@
   <data name="BusStation" xml:space="preserve">
     <value>Bến xe</value>
   </data>
+  <data name="BusStationFrom" xml:space="preserve">
+    <value>Bến xe đi</value>
+  </data>
+  <data name="BusStationTo" xml:space="preserve">
+    <value>Bến xe đến</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Hủy bỏ</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="CarNumberPlate" xml:space="preserve">
     <value>Biển số xe</value>
+  </data>
+  <data name="Channel" xml:space="preserve">
+    <value>Tuyến đi</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Tạo mới</value>
@@ -201,11 +210,17 @@
   <data name="Password" xml:space="preserve">
     <value>Mật khẩu</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Đơn giá</value>
+  </data>
   <data name="RequiredCarDiagram" xml:space="preserve">
     <value>Đây là sơ đồ ghế của xe khách, hệ thống sẽ dựa vào sơ đồ để hiển thị và xác định các ghế trong xe. Sơ đồ ghế nhập theo định dạng: x&lt;vi trí ghế&gt;&lt;khoản cách&gt;x&lt;vi trí ghế&gt;&lt;xuống dòng | khoản cách&gt;</value>
   </data>
   <data name="RequiredError" xml:space="preserve">
     <value>Trường "{0}" là bắt buộc</value>
+  </data>
+  <data name="RunTime" xml:space="preserve">
+    <value>Thời gian đi</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Lưu lại</value>
