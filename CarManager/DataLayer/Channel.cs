@@ -28,7 +28,6 @@ namespace DataLayer
         public double DefaultPrice { get; set; }
     
         public virtual BusStation BusStation { get; set; }
-        public virtual BusStation BusStation1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailChannel> DetailChannels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

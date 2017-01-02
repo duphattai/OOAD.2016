@@ -9,6 +9,13 @@ namespace ServiceLayer.Service
 {
     public interface IBusStationService
     {
+        IEnumerable<BusStation> GetList(string SearchString);
+
+        BusStation Get(int id);
+
+        string Insert(BusStation entity);
+        string Update(BusStation entity);
+        string Delete(int id);
     }
     public class BusStationService : IBusStationService
     {
@@ -16,6 +23,70 @@ namespace ServiceLayer.Service
         public BusStationService(CarManagerEntities db)
         {
             _database = db;
+        }
+
+        public BusStation Get(int id)
+        {
+            return _database.BusStations.Find(id);
+        }
+
+        public IEnumerable<BusStation> GetList(string SearchString)
+        {
+            if (string.IsNullOrEmpty(SearchString))
+                return _database.BusStations.ToList();
+            else
+            {
+                return _database.BusStations.Where(o => o.Name.ToLower().Contains(SearchString.Trim().ToLower()));
+            }
+
+        }
+
+        public string Insert(BusStation entity)
+        {
+            try 
+            {
+                entity.Name = entity.Name.Trim();
+
+                _database.BusStations.Add(entity);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string Update(BusStation model)
+        {
+            try
+            {
+                var entity = Get(model.IdBusStation);
+                _database.Entry(entity).CurrentValues.SetValues(model);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string Delete(int id)
+        {
+            try
+            {
+                var entity = _database.BusStations.Find(id);
+                _database.BusStations.Remove(entity);
+                _database.SaveChanges();
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }

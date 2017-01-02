@@ -18,7 +18,6 @@ namespace DataLayer
         public BusStation()
         {
             this.Channels = new HashSet<Channel>();
-            this.Channels1 = new HashSet<Channel>();
             this.DetailChannels = new HashSet<DetailChannel>();
         }
     
@@ -27,8 +26,6 @@ namespace DataLayer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Channel> Channels { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Channel> Channels1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailChannel> DetailChannels { get; set; }
     }

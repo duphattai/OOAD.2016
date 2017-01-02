@@ -288,7 +288,6 @@
           <Property Name="IdBusStation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Channels" Relationship="Self.FK__Channel__IdBusSt__1B0907CE" FromRole="BusStation" ToRole="Channel" />
-          <NavigationProperty Name="Channels1" Relationship="Self.FK__Channel__IdBusSt__1BFD2C07" FromRole="BusStation" ToRole="Channel" />
           <NavigationProperty Name="DetailChannels" Relationship="Self.FK__DetailCha__IdBus__1FCDBCEB" FromRole="BusStation" ToRole="DetailChannel" />
         </EntityType>
         <EntityType Name="Car">
@@ -325,7 +324,6 @@
           <Property Name="RunTime" Type="Int32" Nullable="false" />
           <Property Name="DefaultPrice" Type="Double" Nullable="false" />
           <NavigationProperty Name="BusStation" Relationship="Self.FK__Channel__IdBusSt__1B0907CE" FromRole="Channel" ToRole="BusStation" />
-          <NavigationProperty Name="BusStation1" Relationship="Self.FK__Channel__IdBusSt__1BFD2C07" FromRole="Channel" ToRole="BusStation" />
           <NavigationProperty Name="DetailChannels" Relationship="Self.FK__DetailCha__IdCha__1ED998B2" FromRole="Channel" ToRole="DetailChannel" />
           <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__IdChan__22AA2996" FromRole="Channel" ToRole="Schedule" />
         </EntityType>

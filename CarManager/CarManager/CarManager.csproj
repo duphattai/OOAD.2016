@@ -181,11 +181,14 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarDiagramController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusStationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChannelController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Models\AccountModels.cs" />
     <Compile Include="Areas\Admin\Models\CarDiagramModel.cs" />
     <Compile Include="Areas\Admin\Models\CarModel.cs" />
+    <Compile Include="Areas\Admin\Models\ChannelModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,6 +249,11 @@
     <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\CarModel.cshtml" />
     <Content Include="Areas\Admin\Views\Car\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\CarDiagram\CarDiagramsList.cshtml" />
+    <Content Include="Areas\Admin\Views\Channel\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Channel\ChannelsList.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStation\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStation\BusStationsList.cshtml" />
+    <Content Include="Areas\Admin\Views\BusStation\InsertOrUpdate.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

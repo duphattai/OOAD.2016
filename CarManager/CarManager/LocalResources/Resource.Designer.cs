@@ -97,6 +97,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bến xe.
+        /// </summary>
+        public static string BusStation {
+            get {
+                return ResourceManager.GetString("BusStation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hủy bỏ.
         /// </summary>
         public static string Cancel {
@@ -214,6 +223,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tên {0} này đã tồn tại..
+        /// </summary>
+        public static string ExistingNameOfError {
+            get {
+                return ResourceManager.GetString("ExistingNameOfError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mã.
         /// </summary>
         public static string ID {
@@ -318,6 +336,24 @@ namespace LocalResources {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tìm kiếm.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tìm kiếm....
+        /// </summary>
+        public static string SearchPlaceholder {
+            get {
+                return ResourceManager.GetString("SearchPlaceholder", resourceCulture);
             }
         }
         

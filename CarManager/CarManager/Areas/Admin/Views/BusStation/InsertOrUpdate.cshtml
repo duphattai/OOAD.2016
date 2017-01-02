@@ -1,0 +1,53 @@
+﻿@model CarManager.Areas.Admin.Models.BusStationModel
+@{
+    ViewBag.Title = Resource.BusStation;
+
+    string actionName = "";
+    string title = "";
+    if (ViewBag.IsInsert)
+    {
+        actionName = "Create";
+        title = @Resource.Create;
+    }
+    else
+    {
+        actionName = "Edit";
+        title = @Resource.Edit;
+    }
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            @Resource.BusStation
+            <small>@title</small>
+        </h3>
+    </div>
+</div>
+
+<div class="main-content">
+    @using (Html.BeginForm(@actionName, "BusStation", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(model => model.IdBusStation)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-sm-offset-3 col-md-10 col-sm-9 col-xs-12">
+                    <input type="submit" value="@Resource.Save" class="btn btn-primary" />
+                    <a href="@Url.Action("Index")" class="btn btn-default">@Resource.BackToList</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

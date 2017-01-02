@@ -61,3 +61,10 @@ span.field-validation-error{
 .seat_selecting{
 	background-color: rgb(186, 223, 65);
 }
+
+/* bus station */
+#bus_station_page .form-control[readonly]{
+    background-color: transparent !important;
+    border: none;
+    box-shadow: none;
+}

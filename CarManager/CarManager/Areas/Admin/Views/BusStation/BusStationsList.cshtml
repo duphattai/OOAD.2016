@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<CarManager.Areas.Admin.Models.BusStationModel>
+@using PagedList.Mvc;
+
+<table class="table table-hover">
+    <thead class="thead-inverse">
+        <tr>
+            <th class="col-lg-1">
+                @Resource.ID
+            </th>
+            <th class="col-lg-7">
+                @string.Format(@Resource.NameOf, Resource.BusStation.ToLower())
+            </th>
+            <th class="col-lg-4">
+                @Resource.Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @using (Ajax.BeginForm("Edit", new { page = Model.PageNumber, item_IdBusStation = @item.IdBusStation }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "list", InsertionMode = InsertionMode.Replace }))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdBusStation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-default" href="@Url.Action("Edit", new { id = @item.IdBusStation })">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> @Resource.Edit
+                            </a>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+
+                            <ul class="dropdown-menu btn-dropdown-menu" role="menu">
+                                <li>
+                                    <a href="javascript:void(0)" data-toggle="confirmation" class="delete_item" id="@string.Format("{0}?page={1}", item.IdBusStation, @Model.PageNumber)">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i> @Resource.Delete
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                }         
+            </tr>
+        }
+</table>
+
+<div class="pull-left">
+    @string.Format(Resource.PaginationTxt, Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber, @Model.PageCount)
+</div>
+<div class="pull-right">
+    @Html.PagedListPager(Model, page => Url.Action("BusStationsList", new { page, @ViewBag.SearchString }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "list", InsertionMode = InsertionMode.Replace }))
+</div>
