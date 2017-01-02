@@ -1,0 +1,72 @@
+﻿@model CarManager.Areas.Admin.Models.AccountModel
+@{
+    var role = @ViewBag.Role as SelectList;
+    if(!string.IsNullOrEmpty(Model.IdRoles))
+        Model.IdRoles = role.Select(o => int.Parse(o.Value)).First().ToString();
+}
+@Html.HiddenFor(model => model.IdAccount)
+<div class="form-group">
+    @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserName)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Pass, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.Pass, new { @class = "form-control", @type = "password" })
+        @Html.ValidationMessageFor(model => model.Pass)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ConfirmPass, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.ConfirmPass, new { @class = "form-control", @type = "password" })
+        @Html.ValidationMessageFor(model => model.ConfirmPass)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SelectedValues, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.DropDownListFor(model => model.SelectedValues, role, new { @class = "form-control", multiple = "multiple" })
+        @Html.ValidationMessageFor(model => model.SelectedValues)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FullName, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FullName)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CMND, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.CMND, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CMND)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+</div>
+
+
