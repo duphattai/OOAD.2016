@@ -254,6 +254,14 @@
     <Content Include="Areas\Admin\Views\BusStation\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BusStation\BusStationsList.cshtml" />
     <Content Include="Areas\Admin\Views\BusStation\InsertOrUpdate.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\AccountList.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\AccountModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\AccountModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\AccountEditModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Insert.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
