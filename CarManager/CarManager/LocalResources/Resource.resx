@@ -161,6 +161,7 @@
   </data>
   <data name="Channel" xml:space="preserve">
     <value>Tuyến đi</value>
+    </data>
   <data name="CMND" xml:space="preserve">
     <value>CMND</value>
   </data>
@@ -193,6 +194,7 @@
   </data>
   <data name="ExistingNameOfError" xml:space="preserve">
     <value>Tên {0} này đã tồn tại.</value>
+    </data>
   <data name="FullName" xml:space="preserve">
     <value>Họ và tên</value>
   </data>
@@ -228,6 +230,7 @@
   </data>
   <data name="Price" xml:space="preserve">
     <value>Đơn giá</value>
+    </data>
   <data name="PasswordNotMatch" xml:space="preserve">
     <value>Mật khẩu không trùng khớp</value>
   </data>
@@ -242,6 +245,7 @@
   </data>
   <data name="RunTime" xml:space="preserve">
     <value>Thời gian đi</value>
+    </data>
   <data name="Role" xml:space="preserve">
     <value>Quyền</value>
   </data>
