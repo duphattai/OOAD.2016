@@ -23,6 +23,10 @@ namespace CarManager.Infrastructure.Mapping
 
             CreateMap<Car, CarModel>();
             CreateMap<Car, CarItemModel>();
+
+            CreateMap<Account, AccountModel>();
+            CreateMap<Account, AccountEditModel>();
+            CreateMap<Account, AccountItemModel>();
         }
     }
 }

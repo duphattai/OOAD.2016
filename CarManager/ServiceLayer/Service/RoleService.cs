@@ -11,6 +11,7 @@ namespace ServiceLayer.Service
     public interface IRoleService
     {
         IEnumerable<Role> GetAll();
+        Role Get(int id);
     }
 
     public class RoleService : IRoleService
@@ -19,6 +20,11 @@ namespace ServiceLayer.Service
         public RoleService(CarManagerEntities db)
         {
             _database = db;
+        }
+
+        public Role Get(int id)
+        {
+            return _database.Roles.Find(id);
         }
 
         public IEnumerable<Role> GetAll()

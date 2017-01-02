@@ -12,6 +12,15 @@ namespace ServiceLayer.Service
     {
         Account DoesAccountExist(string userName, string pass);
 
+        string Insert(Account entity);
+        string Update(Account entity);
+        string Delete(int id);
+
+        Account Get(int id);
+        IEnumerable<Account> GetList(int? idRole = null);
+
+        bool DoesUserNameExist(string username);
+        bool PasswordNotMatch(string pass);
     }
     public class AccountService : IAccountService
     {
@@ -73,6 +82,100 @@ namespace ServiceLayer.Service
                 && pass == t.Pass).FirstOrDefault();
 
             return account;
+        }
+
+        public string Insert(Account entity)
+        {
+            try
+            {
+                MD5 md5Hash = MD5.Create();
+                entity.Pass = GetMd5Hash(md5Hash, entity.Pass);
+                _database.Accounts.Add(entity);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string Update(Account model)
+        {
+            try
+            {
+                var entity = Get(model.IdAccount);
+                _database.Entry(entity).CurrentValues.SetValues(model);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string Delete(int id)
+        {
+            try
+            {
+                var entity = _database.Accounts.Find(id);
+                _database.Accounts.Remove(entity);
+                _database.SaveChanges();
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public Account Get(int id)
+        {
+            return _database.Accounts.Find(id);
+        }
+
+        public IEnumerable<Account> GetList(int? idRole = null)
+        {
+            if (idRole == null)
+                return _database.Accounts.ToList();
+            else
+            {
+                var result = _database.Accounts.ToList();
+                result = result.Where(item => item.IdRoles.Split(',').Select(o => Int32.Parse(o)).ToArray().Contains(idRole.Value)).ToList();
+                //foreach(var item in result)
+                //{
+                //    int[] roles = item.IdRoles.Split(',').Select(o => Int32.Parse(o)).ToArray();
+                //    if (!roles.Contains(idRole.Value))
+                //        result.Remove(item);
+                //}
+
+                return result;
+            }
+        }
+
+        public bool DoesUserNameExist(string username)
+        {
+            bool check = false;
+            var accounts = _database.Accounts.ToList();
+
+            foreach (var item in accounts)
+            {
+                if (item.UserName == username)
+                {
+                    check = true;
+                    break;
+                }                
+            }
+
+            return check;
+        }
+
+        public bool PasswordNotMatch(string pass)
+        {
+            throw new NotImplementedException();
         }
     }
 }

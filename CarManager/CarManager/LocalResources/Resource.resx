@@ -120,8 +120,14 @@
   <data name="AccessDenied" xml:space="preserve">
     <value>Truy cập bị từ chối.</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>Tài khoản</value>
+  </data>
   <data name="Action" xml:space="preserve">
     <value>Hành động</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Địa chỉ</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>Tất cả</value>
@@ -143,6 +149,12 @@
   </data>
   <data name="CarNumberPlate" xml:space="preserve">
     <value>Biển số xe</value>
+  </data>
+  <data name="CMND" xml:space="preserve">
+    <value>CMND</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Xác nhận mật khẩu</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Tạo mới</value>
@@ -168,8 +180,14 @@
   <data name="ExistForeignKeyError" xml:space="preserve">
     <value>Không thể xóa dữ liệu đang được sử dụng. </value>
   </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Họ và tên</value>
+  </data>
   <data name="ID" xml:space="preserve">
     <value>Mã</value>
+  </data>
+  <data name="InputSpecialCharacter" xml:space="preserve">
+    <value>Trường {0} không được chứa ký tự đặc biệt</value>
   </data>
   <data name="InvalidFormat" xml:space="preserve">
     <value>Trường {0} nhập không đúng định dạng</value>
@@ -195,11 +213,20 @@
   <data name="Password" xml:space="preserve">
     <value>Mật khẩu</value>
   </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>Mật khẩu không trùng khớp</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>SĐT</value>
+  </data>
   <data name="RequiredCarDiagram" xml:space="preserve">
     <value>Đây là sơ đồ ghế của xe khách, hệ thống sẽ dựa vào sơ đồ để hiển thị và xác định các ghế trong xe. Sơ đồ ghế nhập theo định dạng: x&lt;vi trí ghế&gt;&lt;khoản cách&gt;x&lt;vi trí ghế&gt;&lt;xuống dòng | khoản cách&gt;</value>
   </data>
   <data name="RequiredError" xml:space="preserve">
     <value>Trường "{0}" là bắt buộc</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Quyền</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Lưu lại</value>
@@ -210,6 +237,9 @@
   <data name="Stewardess" xml:space="preserve">
     <value>Tiếp viên</value>
   </data>
+  <data name="StringLengthErrorMessage" xml:space="preserve">
+    <value>Trường {0} phải dài ít nhất {2} ký tự và tối đa {1} ký tự</value>
+  </data>
   <data name="TotalSeat" xml:space="preserve">
     <value>Tổng số ghế</value>
   </data>
@@ -218,6 +248,9 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>Tên đăng nhập</value>
+  </data>
+  <data name="UsernameExistedError" xml:space="preserve">
+    <value>Tên đăng nhập đã tồn tại</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>Xem</value>
