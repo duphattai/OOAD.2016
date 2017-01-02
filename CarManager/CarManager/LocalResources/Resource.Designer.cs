@@ -196,6 +196,24 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chi tiết tuyến.
+        /// </summary>
+        public static string ChannelDetail {
+            get {
+                return ResourceManager.GetString("ChannelDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bến xe đi và bến xe đến không được trùng.
+        /// </summary>
+        public static string ChannelTheSameError {
+            get {
+                return ResourceManager.GetString("ChannelTheSameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CMND.
         /// </summary>
         public static string CMND {
@@ -291,6 +309,15 @@ namespace LocalResources {
         public static string ExistingNameOfError {
             get {
                 return ResourceManager.GetString("ExistingNameOfError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} đã tồn tại.
+        /// </summary>
+        public static string ExistingOfError {
+            get {
+                return ResourceManager.GetString("ExistingOfError", resourceCulture);
             }
         }
         
@@ -466,6 +493,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lưu và tiếp tục chỉnh sửa.
+        /// </summary>
+        public static string SaveAndContinueEdit {
+            get {
+                return ResourceManager.GetString("SaveAndContinueEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tìm kiếm.
         /// </summary>
         public static string Search {
@@ -489,6 +525,15 @@ namespace LocalResources {
         public static string SeatDiagram {
             get {
                 return ResourceManager.GetString("SeatDiagram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to --- Chọn {0} ---.
+        /// </summary>
+        public static string SelectPlaceHolder {
+            get {
+                return ResourceManager.GetString("SelectPlaceHolder", resourceCulture);
             }
         }
         

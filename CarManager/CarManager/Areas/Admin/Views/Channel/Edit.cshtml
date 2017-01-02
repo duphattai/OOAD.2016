@@ -1,0 +1,56 @@
+﻿@model CarManager.Areas.Admin.Models.ChannelModel
+@{
+    ViewBag.Title = Resource.Channel;
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            @Resource.Channel
+            <small>@Resource.Edit</small>
+        </h3>
+    </div>
+</div>
+
+<div class="main-content">
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#channel">@Resource.Channel</a></li>
+        <li><a data-toggle="tab" href="#channel_detail">@Resource.ChannelDetail</a></li>
+    </ul>
+    <br/>
+    <div class="tab-content">
+        <div id="channel" class="tab-pane fade in active" >
+            @using (Html.BeginForm("Edit", "Channel", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+                    @Html.EditorForModel()
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-sm-offset-3 col-md-10 col-sm-9 col-xs-12">
+                            <input type="submit" value="@Resource.Save" name="SaveMode" class="btn btn-primary" />
+                            <a href="@Url.Action("Index")" class="btn btn-default">@Resource.BackToList</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="channel_detail" class="tab-pane fade" style="min-height: 180px;">
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+    $(document).ready(function () {
+        $('select').select2({
+            theme: "bootstrap"
+        });
+    });
+
+    </script>
+}

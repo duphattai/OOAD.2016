@@ -23,6 +23,9 @@ namespace CarManager.Areas.Admin.Models
         public string Channel { get; set; }
         public int RunTime { get; set; }
 
+        public int IdBusStationFrom { get; set; }
+        public int IdBusStationTo { get; set; }
+
         public double DefaultPrice { get; set; }
     }
 
@@ -45,11 +48,13 @@ namespace CarManager.Areas.Admin.Models
         public int IdBusStationTo { get; set; }
 
         [Range(0, int.MaxValue)]
+        [Display(Name = "RunTime", ResourceType = typeof(LocalResources.Resource))]
         public int RunTime { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Resource))]
         [Display(Name = "Price", ResourceType = typeof(LocalResources.Resource))]
         [Range(0, int.MaxValue)]
         public double DefaultPrice { get; set; }
+
     }
 }

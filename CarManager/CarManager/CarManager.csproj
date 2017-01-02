@@ -262,6 +262,9 @@
     <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\AccountModel.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\AccountEditModel.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Insert.cshtml" />
+    <Content Include="Areas\Admin\Views\Channel\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\ChannelModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Channel\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

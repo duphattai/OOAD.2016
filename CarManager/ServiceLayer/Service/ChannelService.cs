@@ -11,8 +11,14 @@ namespace ServiceLayer.Service
     {
         IEnumerable<Channel> GetList(int? BusStationFrom = null, int? BusStationTo = null);
 
-        IEnumerable<BusStation> GetBusStationFrom();
-        IEnumerable<BusStation> GetBusStationTo();
+        List<BusStation> GetBusStationFrom();
+        List<BusStation> GetBusStationTo();
+
+        Channel Get(int id);
+
+        string Insert(ref Channel entity);
+        string Update(Channel entity);
+        string Delete(int id);
     }
     public class ChannelService : IChannelService
     {
@@ -35,26 +41,79 @@ namespace ServiceLayer.Service
             return result;
         }
 
-        public IEnumerable<BusStation> GetBusStationFrom()
+        public List<BusStation> GetBusStationFrom()
         {
             var busStationFrom = _database.Channels
                 .Select(o=> o.IdBusStationFrom).Distinct().ToList(); // make distinct
 
             if (busStationFrom.Count() != 0)
-                return _database.BusStations.Where(t => busStationFrom.Contains(t.IdBusStation));
+                return _database.BusStations.Where(t => busStationFrom.Contains(t.IdBusStation)).ToList();
             else 
                 return null;
         }
 
-        public IEnumerable<BusStation> GetBusStationTo()
+        public List<BusStation> GetBusStationTo()
         {
-            var busStationTo = _database.Channels.Select(o=> o.IdBusStationTo).Distinct().ToList(); // make distinct
+            var busStationTo = _database.Channels
+                .Select(o=> o.IdBusStationTo).Distinct().ToList(); // make distinct
 
 
             if (busStationTo.Count() != 0)
-                return _database.BusStations.Where(t => busStationTo.Contains(t.IdBusStation));
+                return _database.BusStations.Where(t => busStationTo.Contains(t.IdBusStation)).ToList();
             else
                 return null;
+        }
+
+        public string Insert(ref Channel entity)
+        {
+            try
+            {
+                _database.Channels.Add(entity);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public Channel Get(int id)
+        {
+            return _database.Channels.Find(id);
+        }
+
+        public string Update(Channel model)
+        {
+            try
+            {
+                var entity = Get(model.IdChannel);
+                _database.Entry(entity).CurrentValues.SetValues(model);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string Delete(int id)
+        {
+            try
+            {
+                var entity = Get(id);
+                _database.Channels.Remove(entity);
+                _database.SaveChanges();
+
+                return null;    
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }

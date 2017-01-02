@@ -50,7 +50,7 @@ namespace CarManager.Areas.Admin.Controllers
         {
             ViewBag.IsInsert = false;
             // does existing bus station
-            var result = _busStationService.GetList(null).Where(o => o.IdBusStation != model.IdBusStation && o.Name == model.Name);
+            var result = _busStationService.GetList().Where(o => o.IdBusStation != model.IdBusStation && o.Name == model.Name);
             if (result.Count() == 0) // not existing, can insert
             {
                 var entity = _mapper.Map<BusStation>(model);
@@ -82,7 +82,7 @@ namespace CarManager.Areas.Admin.Controllers
         {
             ViewBag.IsInsert = true;
             // does existing bus station
-            if (_busStationService.GetList(null).Where(o=> o.Name.ToLower() == model.Name.Trim().ToLower()).Count() == 0) // not existing, can insert
+            if (_busStationService.GetList().Where(o=> o.Name.ToLower() == model.Name.Trim().ToLower()).Count() == 0) // not existing, can insert
             {
                 var entity = _mapper.Map<BusStation>(model);
                 string error = _busStationService.Insert(entity);

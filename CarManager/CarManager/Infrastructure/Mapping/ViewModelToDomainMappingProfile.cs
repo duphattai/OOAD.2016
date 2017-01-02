@@ -23,6 +23,8 @@ namespace CarManager.Infrastructure.Mapping
             CreateMap<AccountModel, Account>();
             CreateMap<AccountEditModel, Account>();
             CreateMap<AccountItemModel, Account>();
+
+            CreateMap<ChannelModel, Channel>();
         }
     }
 }

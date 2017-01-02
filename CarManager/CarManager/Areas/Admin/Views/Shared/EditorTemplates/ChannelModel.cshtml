@@ -1,0 +1,36 @@
+﻿@model CarManager.Areas.Admin.Models.ChannelModel
+@{
+
+}
+@Html.HiddenFor(model => model.IdChannel)
+<div class="form-group">
+    @Html.LabelFor(model => model.IdBusStationFrom, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.DropDownListFor(model => model.IdBusStationFrom, @ViewBag.BusStations as SelectList, string.Format(@Resource.SelectPlaceHolder, @Resource.BusStationFrom), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IdBusStationFrom)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.IdBusStationTo, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.DropDownListFor(model => model.IdBusStationTo, @ViewBag.BusStations as SelectList, string.Format(@Resource.SelectPlaceHolder, @Resource.BusStationTo) ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IdBusStationTo)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.RunTime, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.RunTime, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.RunTime)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.DefaultPrice, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.DefaultPrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DefaultPrice)
+    </div>
+</div>
+
+

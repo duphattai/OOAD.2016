@@ -19,20 +19,20 @@
     @using (Ajax.BeginForm("ChannelsList", null, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
     {
         <div class="form-group clearfix">
+        @if (ViewBag.BusStationFroms != null)
+        {
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <label class="control-label">@Resource.BusStationFrom</label>
-                @if (ViewBag.BusStationFroms != null)
-                {
-                    Html.DropDownListFor(model => model.BusStationFrom, ViewBag.BusStationFroms as SelectList, @Resource.All, new { @class = "form-control" });
-                }             
+                @Html.DropDownListFor(model => model.BusStationFrom, ViewBag.BusStationFroms as SelectList, @Resource.All, new { @class = "form-control" })
             </div>
+        } 
+        @if (ViewBag.BusStationFroms != null)
+        {
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <label class="control-label">@Resource.BusStationTo</label>
-                @if (ViewBag.BusStationFroms != null)
-                {
-                    Html.DropDownListFor(model => model.BusStationTo, ViewBag.BusStationTos as SelectList, @Resource.All, new { @class = "form-control" });
-                }               
+                @Html.DropDownListFor(model => model.BusStationTo, ViewBag.BusStationTos as SelectList, @Resource.All, new { @class = "form-control" })
             </div>
+        } 
         </div>
     }
 
@@ -49,7 +49,7 @@
 
 @section scripts{
     <script>
-        $('#BusStationFrom, #BusStationFrom').change(function () {
+        $('#BusStationFrom, #BusStationTo').change(function () {
             $('#filter_div').submit();
         });
 

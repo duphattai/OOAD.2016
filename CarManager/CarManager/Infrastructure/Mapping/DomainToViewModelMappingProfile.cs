@@ -30,6 +30,7 @@ namespace CarManager.Infrastructure.Mapping
             CreateMap<BusStation, BusStationModel>();
 
             CreateMap<Channel, ChannelItemModel>();
+            CreateMap<Channel, ChannelModel>();
 
             CreateMap<Account, AccountModel>();
             CreateMap<Account, AccountEditModel>();

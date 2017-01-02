@@ -161,7 +161,7 @@
   </data>
   <data name="Channel" xml:space="preserve">
     <value>Tuyến đi</value>
-    </data>
+  </data>
   <data name="CMND" xml:space="preserve">
     <value>CMND</value>
   </data>
@@ -194,7 +194,7 @@
   </data>
   <data name="ExistingNameOfError" xml:space="preserve">
     <value>Tên {0} này đã tồn tại.</value>
-    </data>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>Họ và tên</value>
   </data>
@@ -230,7 +230,7 @@
   </data>
   <data name="Price" xml:space="preserve">
     <value>Đơn giá</value>
-    </data>
+  </data>
   <data name="PasswordNotMatch" xml:space="preserve">
     <value>Mật khẩu không trùng khớp</value>
   </data>
@@ -245,7 +245,7 @@
   </data>
   <data name="RunTime" xml:space="preserve">
     <value>Thời gian đi</value>
-    </data>
+  </data>
   <data name="Role" xml:space="preserve">
     <value>Quyền</value>
   </data>
@@ -281,5 +281,20 @@
   </data>
   <data name="View" xml:space="preserve">
     <value>Xem</value>
+  </data>
+  <data name="SaveAndContinueEdit" xml:space="preserve">
+    <value>Lưu và tiếp tục chỉnh sửa</value>
+  </data>
+  <data name="SelectPlaceHolder" xml:space="preserve">
+    <value>--- Chọn {0} ---</value>
+  </data>
+  <data name="ChannelTheSameError" xml:space="preserve">
+    <value>Bến xe đi và bến xe đến không được trùng</value>
+  </data>
+  <data name="ExistingOfError" xml:space="preserve">
+    <value>{0} đã tồn tại</value>
+  </data>
+  <data name="ChannelDetail" xml:space="preserve">
+    <value>Chi tiết tuyến</value>
   </data>
 </root>

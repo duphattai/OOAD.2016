@@ -9,7 +9,9 @@ namespace ServiceLayer.Service
 {
     public interface IBusStationService
     {
-        IEnumerable<BusStation> GetList(string SearchString);
+        IEnumerable<BusStation> GetList(string SearchString = null);
+
+        IEnumerable<BusStation> GetList(params int[] id);
 
         BusStation Get(int id);
 
@@ -30,7 +32,7 @@ namespace ServiceLayer.Service
             return _database.BusStations.Find(id);
         }
 
-        public IEnumerable<BusStation> GetList(string SearchString)
+        public IEnumerable<BusStation> GetList(string SearchString = null)
         {
             if (string.IsNullOrEmpty(SearchString))
                 return _database.BusStations.ToList();
@@ -39,6 +41,11 @@ namespace ServiceLayer.Service
                 return _database.BusStations.Where(o => o.Name.ToLower().Contains(SearchString.Trim().ToLower()));
             }
 
+        }
+
+        public IEnumerable<BusStation> GetList(params int[] id)
+        {
+            return _database.BusStations.Where(t => id.Contains(t.IdBusStation));
         }
 
         public string Insert(BusStation entity)
