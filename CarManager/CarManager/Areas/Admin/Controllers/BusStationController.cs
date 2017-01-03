@@ -10,9 +10,12 @@ using PagedList.Mvc;
 using PagedList;
 using DataLayer;
 using LocalResources;
+using CarManager.Infrastructure.Attributes;
 
 namespace CarManager.Areas.Admin.Controllers
 {
+
+    [CustomAuthorize("Manager")]
     public class BusStationController : BaseController
     {
         private readonly IBusStationService _busStationService;

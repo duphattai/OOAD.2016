@@ -9,6 +9,13 @@ namespace ServiceLayer.Service
 {
     public interface IScheduleService
     {
+        IEnumerable<Schedule> GetList(int? IdChannel = null, DateTime? startDate = null);
+
+        Schedule Get(int id);
+
+        string Insert(Schedule entity);
+        string Update(Schedule entity);
+        string Delete(int id);
     }
     public class ScheduleService : IScheduleService
     {
@@ -16,6 +23,72 @@ namespace ServiceLayer.Service
         public ScheduleService(CarManagerEntities db)
         {
             _database = db;
+        }
+
+        public IEnumerable<Schedule> GetList(int? IdChannel = null, DateTime? startDate = null)
+        {
+            IEnumerable<Schedule> result;
+            if (IdChannel == null)
+                result = _database.Schedules.AsEnumerable();
+            else
+                result = _database.Schedules.Where(t => t.IdChannel == IdChannel.Value);
+
+            if (startDate != null)
+                result = result.Where(t => t.StartTime.Value > startDate.Value);
+
+
+            return result;
+        }
+
+        public Schedule Get(int id)
+        {
+            return _database.Schedules.Find(id);
+        }
+
+        public string Insert(Schedule entity)
+        {
+            try
+            {
+                _database.Schedules.Add(entity);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string Update(Schedule model)
+        {
+            try
+            {
+                var entity = Get(model.IdCar);
+                _database.Entry(entity).CurrentValues.SetValues(model);
+                _database.SaveChanges();
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string Delete(int id)
+        {
+            try
+            {
+                var entity = _database.Schedules.Find(id);
+                _database.Schedules.Remove(entity);
+                _database.SaveChanges();
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }

@@ -25,7 +25,7 @@
 <div class="form-group">
     @Html.LabelFor(model => model.IdCarDiagram, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
     <div class="col-md-10 col-sm-9 col-xs-12">
-        @Html.DropDownListFor(model => model.IdCarDiagram, carDiagrams, new { @class = "form-control", @readonly = true })
+        @Html.DropDownListFor(model => model.IdCarDiagram, carDiagrams, new { @class = "form-control", @disabled = "disabled" })
         @Html.ValidationMessageFor(model => model.IdCarDiagram)
     </div>
 </div>

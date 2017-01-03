@@ -297,4 +297,16 @@
   <data name="ChannelDetail" xml:space="preserve">
     <value>Chi tiết tuyến</value>
   </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Lịch chuyến đi</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Thời gian khởi hành</value>
+  </data>
+  <data name="CurrentPrice" xml:space="preserve">
+    <value>Giá hiện tại</value>
+  </data>
+  <data name="DateTimeFormat" xml:space="preserve">
+    <value>HH:mm DD/MM/yyyy</value>
+  </data>
 </root>

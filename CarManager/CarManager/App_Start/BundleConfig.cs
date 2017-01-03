@@ -25,13 +25,17 @@ namespace CarManager
                           "~/Scripts/bootstrap.js",
                           "~/Scripts/bootstrap-confirmation.js",
                           "~/Scripts/jquery.unobtrusive-ajax.js",
-                          "~/Scripts/skrollr.min.js"));
+                          "~/Scripts/skrollr.min.js"
+                          ));
 
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                         "~/Scripts/select2/select2.js",
                         "~/Scripts/select2/vi.js",
                         "~/Scripts/admin.js",
-                        "~/Scripts/jquery-ui.js"));
+                        "~/Scripts/jquery-ui.js",
+                        "~/Scripts/moment.js",
+                        "~/Scripts/bootstrap-datetimepicker.js"
+                        ));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -40,7 +44,8 @@ namespace CarManager
                       "~/Content/select2.css",
                       "~/Content/admin.css",
                       "~/Content/jquery-ui.css",
-                      "~/Content/site.css"
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-datetimepicker.css"
                       ));
 
         }

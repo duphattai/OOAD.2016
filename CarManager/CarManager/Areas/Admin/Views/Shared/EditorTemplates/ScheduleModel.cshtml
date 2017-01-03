@@ -1,0 +1,60 @@
+﻿@model CarManager.Areas.Admin.Models.ScheduleModel
+
+@{
+    var Channels = @ViewBag.Channels as SelectList;
+    var Cars = @ViewBag.Cars as SelectList;
+}
+
+
+@Html.HiddenFor(model => model.IdSchedule)
+<div class="form-group">
+    @Html.LabelFor(model => model.IdChannel, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.DropDownListFor(model => model.IdChannel, Channels, string.Format(@Resource.SelectPlaceHolder, @Resource.Schedule) ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IdChannel)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Price)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.IdCar, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.DropDownListFor(model => model.IdCar, Cars, string.Format(@Resource.SelectPlaceHolder, @Resource.Car), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IdCar)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2 col-sm-3 col-xs-12">@Resource.Driver</label>
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.Driver, new { @class = "form-control", @readonly = true })
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2 col-sm-3 col-xs-12">@Resource.TotalSeat</label>
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.TotalSeat, new { @class = "form-control" , @readonly = true})
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.StartTime, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-4 col-sm-9 col-xs-12">
+        <div class="form-group">
+            <div class='input-group date' id="datetimepicker">
+                @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control" })
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            @Html.ValidationMessageFor(model => model.StartTime)
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -9,11 +9,13 @@ using CarManager.Areas.Admin.Models;
 using PagedList.Mvc;
 using PagedList;
 using DataLayer;
+using CarManager.Infrastructure.Attributes;
 
 
 
 namespace CarManager.Areas.Admin.Controllers
 {
+    [CustomAuthorize("Manager")]
     public class CarController : BaseController
     {
         private readonly ICarService _carService;

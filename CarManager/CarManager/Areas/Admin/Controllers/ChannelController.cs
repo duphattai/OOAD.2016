@@ -10,9 +10,12 @@ using PagedList;
 using PagedList.Mvc;
 using LocalResources;
 using DataLayer;
+using CarManager.Infrastructure.Attributes;
 
 namespace CarManager.Areas.Admin.Controllers
 {
+
+    [CustomAuthorize("Manager")]
     public class ChannelController : BaseController
     {
         private readonly IChannelService _channelService;
@@ -186,6 +189,17 @@ namespace CarManager.Areas.Admin.Controllers
             }
 
             return RedirectToAction("ChannelsList", new { page = page });
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var busStations = _busStationService.GetList();
+            if (busStations.Any())
+                ViewBag.BusStations = new SelectList(busStations, "IdBusStation", "Name");
+
+            var model = _mapper.Map<ChannelModel>(_channelService.Get(id));
+
+            return View(model);
         }
     }
 }

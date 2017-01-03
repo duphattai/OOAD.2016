@@ -27,10 +27,11 @@ namespace DataLayer
         public int RunTime { get; set; }
         public double DefaultPrice { get; set; }
     
-        public virtual BusStation BusStation { get; set; }
+        public virtual BusStation BusStationFrom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailChannel> DetailChannels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schedule> Schedules { get; set; }
+        public virtual BusStation BusStationTo { get; set; }
     }
 }

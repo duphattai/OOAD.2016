@@ -108,7 +108,7 @@
           <Property Name="ArrivalTime" Type="datetime" />
           <Property Name="Price" Type="float" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Car__IdCarDiagra__21B6055D">
+        <Association Name="FK__Car__IdCarDiagra__164452B1">
           <End Role="CarDiagram" Type="Self.CarDiagram" Multiplicity="1" />
           <End Role="Car" Type="Self.Car" Multiplicity="*" />
           <ReferentialConstraint>
@@ -120,7 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Channel__IdBusSt__22AA2996">
+        <Association Name="FK__Channel__IdBusSt__1B0907CE">
           <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
           <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
           <ReferentialConstraint>
@@ -132,7 +132,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Channel__IdBusSt__239E4DCF">
+        <Association Name="FK__Channel__IdBusSt__1BFD2C07">
           <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
           <End Role="Channel" Type="Self.Channel" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,7 +144,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailCha__IdBus__24927208">
+        <Association Name="FK__DetailCha__IdBus__1FCDBCEB">
           <End Role="BusStation" Type="Self.BusStation" Multiplicity="1" />
           <End Role="DetailChannel" Type="Self.DetailChannel" Multiplicity="*" />
           <ReferentialConstraint>
@@ -156,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailCha__IdCha__25869641">
+        <Association Name="FK__DetailCha__IdCha__1ED998B2">
           <End Role="Channel" Type="Self.Channel" Multiplicity="1" />
           <End Role="DetailChannel" Type="Self.DetailChannel" Multiplicity="*" />
           <ReferentialConstraint>
@@ -168,7 +168,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IdOrd__267ABA7A">
+        <Association Name="FK__OrderDeta__IdOrd__286302EC">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -180,7 +180,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IdSch__276EDEB3">
+        <Association Name="FK__OrderDeta__IdSch__29572725">
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,7 +192,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Schedule__IdCar__286302EC">
+        <Association Name="FK__Schedule__IdCar__239E4DCF">
           <End Role="Car" Type="Self.Car" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
           <ReferentialConstraint>
@@ -204,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Schedule__IdChan__29572725">
+        <Association Name="FK__Schedule__IdChan__22AA2996">
           <End Role="Channel" Type="Self.Channel" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
           <ReferentialConstraint>
@@ -227,39 +227,39 @@
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Car__IdCarDiagra__21B6055D" Association="Self.FK__Car__IdCarDiagra__21B6055D">
+          <AssociationSet Name="FK__Car__IdCarDiagra__164452B1" Association="Self.FK__Car__IdCarDiagra__164452B1">
             <End Role="CarDiagram" EntitySet="CarDiagram" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
-          <AssociationSet Name="FK__Channel__IdBusSt__22AA2996" Association="Self.FK__Channel__IdBusSt__22AA2996">
+          <AssociationSet Name="FK__Channel__IdBusSt__1B0907CE" Association="Self.FK__Channel__IdBusSt__1B0907CE">
             <End Role="BusStation" EntitySet="BusStation" />
             <End Role="Channel" EntitySet="Channel" />
           </AssociationSet>
-          <AssociationSet Name="FK__Channel__IdBusSt__239E4DCF" Association="Self.FK__Channel__IdBusSt__239E4DCF">
+          <AssociationSet Name="FK__Channel__IdBusSt__1BFD2C07" Association="Self.FK__Channel__IdBusSt__1BFD2C07">
             <End Role="BusStation" EntitySet="BusStation" />
             <End Role="Channel" EntitySet="Channel" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailCha__IdBus__24927208" Association="Self.FK__DetailCha__IdBus__24927208">
+          <AssociationSet Name="FK__DetailCha__IdBus__1FCDBCEB" Association="Self.FK__DetailCha__IdBus__1FCDBCEB">
             <End Role="BusStation" EntitySet="BusStation" />
             <End Role="DetailChannel" EntitySet="DetailChannel" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailCha__IdCha__25869641" Association="Self.FK__DetailCha__IdCha__25869641">
+          <AssociationSet Name="FK__DetailCha__IdCha__1ED998B2" Association="Self.FK__DetailCha__IdCha__1ED998B2">
             <End Role="Channel" EntitySet="Channel" />
             <End Role="DetailChannel" EntitySet="DetailChannel" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IdOrd__267ABA7A" Association="Self.FK__OrderDeta__IdOrd__267ABA7A">
+          <AssociationSet Name="FK__OrderDeta__IdOrd__286302EC" Association="Self.FK__OrderDeta__IdOrd__286302EC">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IdSch__276EDEB3" Association="Self.FK__OrderDeta__IdSch__276EDEB3">
+          <AssociationSet Name="FK__OrderDeta__IdSch__29572725" Association="Self.FK__OrderDeta__IdSch__29572725">
             <End Role="Schedule" EntitySet="Schedule" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Schedule__IdCar__286302EC" Association="Self.FK__Schedule__IdCar__286302EC">
+          <AssociationSet Name="FK__Schedule__IdCar__239E4DCF" Association="Self.FK__Schedule__IdCar__239E4DCF">
             <End Role="Car" EntitySet="Car" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
-          <AssociationSet Name="FK__Schedule__IdChan__29572725" Association="Self.FK__Schedule__IdChan__29572725">
+          <AssociationSet Name="FK__Schedule__IdChan__22AA2996" Association="Self.FK__Schedule__IdChan__22AA2996">
             <End Role="Channel" EntitySet="Channel" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
@@ -323,9 +323,10 @@
           <Property Name="IdBusStationTo" Type="Int32" Nullable="false" />
           <Property Name="RunTime" Type="Int32" Nullable="false" />
           <Property Name="DefaultPrice" Type="Double" Nullable="false" />
-          <NavigationProperty Name="BusStation" Relationship="Self.FK__Channel__IdBusSt__1B0907CE" FromRole="Channel" ToRole="BusStation" />
+          <NavigationProperty Name="BusStationFrom" Relationship="Self.FK__Channel__IdBusSt__1B0907CE" FromRole="Channel" ToRole="BusStation" />
           <NavigationProperty Name="DetailChannels" Relationship="Self.FK__DetailCha__IdCha__1ED998B2" FromRole="Channel" ToRole="DetailChannel" />
           <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedule__IdChan__22AA2996" FromRole="Channel" ToRole="Schedule" />
+          <NavigationProperty Name="BusStationTo" Relationship="CarManagerModel.FK__Channel__IdBusSt__1BFD2C07" FromRole="Channel" ToRole="BusStation" />
         </EntityType>
         <EntityType Name="DetailChannel">
           <Key>

@@ -42,7 +42,7 @@
                                     <a><i class="fa fa-object-group"></i>Quản lý xe khách<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>
-                                            @Html.ActionLink(string.Format(Resource.ListOf, Resource.Car), "Index", "Car")
+                                            @Html.ActionLink(string.Format(Resource.ListOf, Resource.Car.ToLower()), "Index", "Car")
                                         </li>
                                         <li>
                                             @Html.ActionLink(@Resource.CarDiagram, "Index", "CarDiagram")
@@ -53,7 +53,7 @@
                                     <a><i class="fa fa-picture-o"></i>Quản lý chuyến đi<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>
-                                            @Html.ActionLink("Danh sách chuyến đi", "Index", "Advertisement")
+                                            @Html.ActionLink("Danh sách chuyến đi", "Index", "Schedule")
                                         </li>
                                     </ul>
                                 </li>
@@ -175,12 +175,12 @@
     <script>
 
     // setup boostrap confirmation
-    $(document).ready(function () {
-        $('[data-toggle="confirmation"]').confirmation({
-            placement: 'left',
-            title: '@Html.Raw(Resource.DeleteConfirmation)',
-            btnOkLabel: '@Html.Raw(Resource.Delete)',
-            btnCancelLabel: '@Html.Raw(Resource.Cancel)'
+        $(document).ready(function () {
+            $('[data-toggle="confirmation"]').confirmation({
+                placement: 'left',
+                title: '@Html.Raw(Resource.DeleteConfirmation)',
+                btnOkLabel: '@Html.Raw(Resource.Delete)',
+                btnCancelLabel: '@Html.Raw(Resource.Cancel)'
             });
         });
 
@@ -191,6 +191,14 @@
         })
 
         // end
+
+        // initial datetime picker
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                defaultDate: '@DateTime.Now',
+                format: 'HH:mm DD/MM/YYYY'
+            });
+        });
     </script>
 </body>
 </html>

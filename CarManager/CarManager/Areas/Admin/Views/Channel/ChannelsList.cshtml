@@ -30,7 +30,7 @@
                     @Html.DisplayFor(modelItem => item.Channel)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DefaultPrice)
+                    @String.Format("{0:N}", item.DefaultPrice) đ
                 </td>
                 <td>
                     <div class="btn-group">

@@ -8,9 +8,11 @@ using ServiceLayer.Service;
 using AutoMapper;
 using PagedList;
 using DataLayer;
+using CarManager.Infrastructure.Attributes;
 
 namespace CarManager.Areas.Admin.Controllers
 {
+    [CustomAuthorize("Administration")]
     public class AccountController : BaseController
     {
         private readonly IAccountService _accountService;

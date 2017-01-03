@@ -179,6 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ScheduleController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarDiagramController.cs" />
     <Compile Include="Areas\Admin\Controllers\BusStationController.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Areas\Admin\Models\AccountModels.cs" />
     <Compile Include="Areas\Admin\Models\CarDiagramModel.cs" />
     <Compile Include="Areas\Admin\Models\CarModel.cs" />
+    <Compile Include="Areas\Admin\Models\ScheduleModel.cs" />
     <Compile Include="Areas\Admin\Models\ChannelModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -206,6 +208,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\admin.css" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\Images\bed-white.png" />
@@ -223,6 +227,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap-confirmation.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -265,6 +270,17 @@
     <Content Include="Areas\Admin\Views\Channel\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\ChannelModel.cshtml" />
     <Content Include="Areas\Admin\Views\Channel\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedule\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedule\SchedulesList.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\Schedule\InsertOrUpdate.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\ScheduleModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\ScheduleModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Schedule\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\ChannelModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Channel\Detail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -276,6 +292,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\select2\select2.js" />
@@ -301,9 +321,6 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>

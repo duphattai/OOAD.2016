@@ -1,0 +1,78 @@
+﻿@model CarManager.Areas.Admin.Models.ScheduleModel
+@{
+    ViewBag.Title = Resource.Schedule;
+
+    string actionName = "";
+    string title = "";
+    if (ViewBag.IsInsert)
+    {
+        actionName = "Create";
+        title = @Resource.Create;
+    }
+    else
+    {
+        actionName = "Edit";
+        title = @Resource.Edit;
+    }
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            @Resource.Schedule
+            <small>@title</small>
+        </h3>
+    </div>
+</div>
+
+<div class="main-content">
+    @using (Html.BeginForm(@actionName, "Schedule", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+            @Html.EditorForModel()
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-sm-offset-3 col-md-10 col-sm-9 col-xs-12">
+                    <input type="submit" value="@Resource.Save" class="btn btn-primary" />
+                    <a href="@Url.Action("Index")" class="btn btn-default">@Resource.BackToList</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('select').select2({
+                theme: "bootstrap",
+            });
+        });
+
+        // update price, time when change channel
+        $('#IdChannel').change(function () {
+            $.post("@Url.Action("GetChannel")", { IdChannel: $(this).val() }, function (data) {
+                $("#Price").val(data.DefaultPrice); // update new price
+            });
+        });
+
+        // update driver, total seat when change car
+        $('#IdCar').change(function () {
+            $.post("@Url.Action("GetCar")", { IdCar: $(this).val() }, function (data) {
+                $("#Driver").val(data.Driver); // update driver
+                $("#TotalSeat").val(data.TotalSeat); // total seat
+            });
+        });
+
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                defaultDate: '@Model.StartTime.ToString(@Resource.DateTimeFormat)',
+                format: 'HH:mm DD/MM/YYYY'
+            });
+        });
+    </script>
+}
