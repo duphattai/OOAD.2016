@@ -216,6 +216,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ReportByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pDate" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="CarManagerModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusStation" EntityType="Self.BusStation" Schema="dbo" store:Type="Tables" />
@@ -542,7 +545,14 @@
             <End Role="Schedule" EntitySet="Schedules" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
+          <FunctionImport Name="ReportByDate" ReturnType="Collection(CarManagerModel.ReportByDate_Result)">
+            <Parameter Name="pDate" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="ReportByDate_Result">
+          <Property Type="Int32" Name="TOTAL_TICKED" Nullable="true" />
+          <Property Type="Double" Name="TOTAL_PRICE" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -661,6 +671,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ReportByDate" FunctionName="CarManagerModel.Store.ReportByDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CarManagerModel.ReportByDate_Result">
+                <ScalarProperty Name="TOTAL_TICKED" ColumnName="TOTAL_TICKED" />
+                <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

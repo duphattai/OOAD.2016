@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - TABWEB</title>
-    @RenderSection("css", required: false)
+    
     @Styles.Render("~/Content/css")
+   
+    @RenderSection("css", required: false)
+
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -72,7 +75,10 @@
                                     <a><i class="fa fa-shopping-bag"></i>Lập báo cáo<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>
-                                            @Html.ActionLink("Báo cáo doanh thu", "Index", "Product")
+                                            @Html.ActionLink("Báo cáo doanh thu theo tháng", "ReportByMonth", "Report")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Báo cáo doanh thu theo năm", "ReportByYear", "Report")
                                         </li>
                                     </ul>
                                 </li>

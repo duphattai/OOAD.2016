@@ -1,0 +1,21 @@
+﻿._total{
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 0px;
+}
+
+#lol-graphify-button-donut, 
+#lol-graphify-button-pie, 
+#lol1-graphify-button-donut, 
+#lol1-graphify-button-pie,
+#lol-graphify-button-linear, 
+#lol1-graphify-button-linear
+{
+    display: none;
+}
+
+#lol-graphify-button-table,
+#lol1-graphify-button-table
+{
+    margin-left: -25px;
+}

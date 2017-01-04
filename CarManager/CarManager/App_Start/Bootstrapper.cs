@@ -52,6 +52,7 @@ namespace CarManager.App_Start
             builder.RegisterType<OrderService>().As<IOrderService>().InstancePerLifetimeScope();
             builder.RegisterType<OrderDetailService>().As<IOrderDetailService>().InstancePerLifetimeScope();
             builder.RegisterType<ScheduleService>().As<IScheduleService>().InstancePerLifetimeScope();
+            builder.RegisterType<ReportService>().As<IReportService>().InstancePerLifetimeScope();
 
             IContainer container = builder.Build();
             System.Web.Mvc.DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

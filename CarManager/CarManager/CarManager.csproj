@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,6 +179,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarDiagramController.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Areas\Admin\Controllers\ChannelController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Models\ReportModels.cs" />
     <Compile Include="Areas\Admin\Models\AccountModels.cs" />
     <Compile Include="Areas\Admin\Models\CarDiagramModel.cs" />
     <Compile Include="Areas\Admin\Models\CarModel.cs" />
@@ -205,6 +208,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\report.css" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\font-awesome.css" />
@@ -213,8 +217,10 @@
     <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\report\morris.css" />
     <Content Include="Content\select2.css" />
     <Content Include="Content\sm-core-css.css" />
+    <Content Include="Content\report\style.css" />
     <Content Include="Content\swiper.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -265,6 +271,8 @@
     <Content Include="Areas\Admin\Views\Channel\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\ChannelModel.cshtml" />
     <Content Include="Areas\Admin\Views\Channel\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\ReportByMonth.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\ReportByYear.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -276,6 +284,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\report\graph.js" />
+    <Content Include="Scripts\report\morris.js" />
+    <Content Include="Scripts\report\raphael-min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\select2\select2.js" />

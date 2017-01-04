@@ -35,6 +35,8 @@ namespace CarManager.Infrastructure.Mapping
             CreateMap<Account, AccountModel>();
             CreateMap<Account, AccountEditModel>();
             CreateMap<Account, AccountItemModel>();
+
+            CreateMap<ReportByDate_Result, ReportModel>();
         }
     }
 }

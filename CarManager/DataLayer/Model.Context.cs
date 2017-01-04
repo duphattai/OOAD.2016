@@ -12,6 +12,8 @@ namespace DataLayer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class CarManagerEntities : DbContext
     {
@@ -35,5 +37,14 @@ namespace DataLayer
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Schedule> Schedules { get; set; }
+    
+        public virtual ObjectResult<ReportByDate_Result> ReportByDate(string pDate)
+        {
+            var pDateParameter = pDate != null ?
+                new ObjectParameter("pDate", pDate) :
+                new ObjectParameter("pDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportByDate_Result>("ReportByDate", pDateParameter);
+        }
     }
 }

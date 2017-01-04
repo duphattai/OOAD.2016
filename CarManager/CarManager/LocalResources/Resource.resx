@@ -297,4 +297,10 @@
   <data name="ChannelDetail" xml:space="preserve">
     <value>Chi tiết tuyến</value>
   </data>
+  <data name="ReportByMonth" xml:space="preserve">
+    <value>Báo cáo doanh thu tháng</value>
+  </data>
+  <data name="ReportByYear" xml:space="preserve">
+    <value>Báo cáo doanh thu năm</value>
+  </data>
 </root>

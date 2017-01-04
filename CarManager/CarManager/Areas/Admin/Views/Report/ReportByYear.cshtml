@@ -1,0 +1,186 @@
+﻿@model CarManager.Areas.Admin.Models.ReportModel
+
+@{
+    ViewBag.Title = "Báo cáo doanh thu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section css{
+    <link href="~/Content/report/style.css" rel="stylesheet" />
+    <link href="/Content/report/morris.css" rel="stylesheet" />
+
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>@Resource.ReportByYear</h3>
+    </div>
+    <div class="title_right">
+        <div class="pull-right">
+            @*@Html.ActionLink(@Resource.Create, "Create", null, new { @class = "btn btn-primary" })*@
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+
+    <div class="row form-group clearfix">        
+        <div class="col-md-5">
+            @Html.DropDownList("Year", (IEnumerable<SelectListItem>)ViewBag.Years, "--Chọn năm--", new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit" id="btnReport" class="btn btn-primary">Xem báo cáo</button>
+        </div>
+    </div>
+
+
+    <div class="pull-left">
+        <h5>
+            <span class="field-validation-error" id="error_message">
+            </span>
+        </h5>
+    </div>
+    <div class="w3l-chart1" id="chart">
+
+        <div class="">
+            <h3>Số vé bán được trong năm <label for="lbYear">@Model.Year</label></h3>
+            <div id="tickedYear"></div>
+            <div class="_total">
+                <i>Tổng số vé trong năm <label for="lbYear">@Model.Year</label>: </i><b><label for="lbTicked">@Model.TotalTicked</label></b>
+            </div>
+        </div>
+        <div>
+            <h3>Doanh thu trong năm <label for="lbYear">@Model.Year</label></h3>
+            <div id="priceYear"></div>
+            <div class="_total">
+                <i>Tổng doanh thu trong năm <label for="lbYear">@Model.Year</label>: </i><b><label for="lbPrice">@Model.TotalPrice</label></b>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="/Scripts/report/raphael-min.js"></script>
+    <script src="/Scripts/report/morris.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('select').select2({
+                theme: "bootstrap"
+            });
+
+            RawChart(@Html.Raw(Json.Encode(ViewBag.Lists)));
+            SetText();            
+        });
+
+        $('#btnReport').on('click', function () {
+
+            var Url = '@Url.Action("ReportByYear")';
+            var input = {
+                Year: $('#Year').val()
+            }
+
+            $.post(Url, input, function (data) {
+                if (data.length != 0) {
+                    $("#tickedYear-wrapper").remove();
+                    $("#priceYear-wrapper").remove();
+
+                    RawChart(data);
+                    SetText();
+
+                    $("label[for='lbYear']").html(data[1].Year);
+                    $("label[for='lbTicked']").html(data[1].TotalTicked);
+                    $("label[for='lbPrice']").html(data[1].TotalPrice);
+                } else {
+                    $('#error_message').html('@Resource.ExistForeignKeyError');
+                }
+            });
+        })
+
+        function SetText()
+        {
+            $('#lol-graphify-button-table').text("Bảng");
+            $('#lol1-graphify-button-table').text("Bảng");
+            $('#lol-graphify-button-bar').text("Cột");
+            $('#lol1-graphify-button-bar').text("Cột");
+            $('#lol-graphify-button-area').text("Vùng");
+            $('#lol1-graphify-button-area').text("Vùng");
+        }
+
+        function RawChart (model) {
+            var list = model;
+            var Xs = [];
+            var price = [];
+            var ticked = [];
+            for (var i = 0; i < list.length; i++) {
+                Xs.push(i + 1);
+                price.push(list[i].TOTAL_PRICE);
+                ticked.push(list[i].TOTAL_TICKED);
+            }
+
+            $('#tickedYear').graphify({
+                start: 'bar',
+                obj: {
+                    id: 'lol1',
+                    legend: false,
+                    showPoints: true,
+                    width: 775,
+                    legendX: 450,
+                    pieSize: 200,
+                    shadow: true,
+                    height: 400,
+                    animations: true,
+                    x: Xs,
+                    points: ticked,
+                    xDist: 70,
+                    scale: 10,
+                    yDist: 35,
+                    grid: false,
+                    xName: 'Tháng',
+                    dataNames: ['Số vé'],
+                    design: {
+                        lineColor: 'red',
+                        tooltipFontSize: '20px',
+                        pointColor: 'red',
+                        barColor: 'blue',
+                        areaColor: 'orange'
+                    }
+                }
+            });
+            $('#priceYear').graphify({
+                start: 'bar',
+                obj: {
+                    id: 'lol',
+                    legend: false,
+                    showPoints: true,
+                    width: 775,
+                    legendX: 450,
+                    pieSize: 200,
+                    shadow: true,
+                    height: 400,
+                    animations: true,
+                    x: Xs,
+                    points: price,
+                    xDist: 70,
+                    scale: 500000,
+                    yDist: 35,
+                    grid: false,
+                    xName: 'Tháng',
+                    dataNames: ['Doanh thu'],
+                    design: {
+                        lineColor: 'red',
+                        tooltipFontSize: '20px',
+                        pointColor: 'red',
+                        barColor: 'blue',
+                        areaColor: 'orange'
+                    }
+                }
+            });
+
+        }
+    </script>
+    <script src="/Scripts/report/graph.js"></script>
+
+}
