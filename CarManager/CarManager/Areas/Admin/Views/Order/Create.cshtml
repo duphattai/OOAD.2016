@@ -1,0 +1,58 @@
+﻿@model CarManager.Areas.Admin.Models.OrderModel
+@{
+    ViewBag.Title = Resource.Order;
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            @Resource.Order
+            <small>@Resource.Create</small>
+        </h3>
+    </div>
+</div>
+
+<div class="main-content">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">@Resource.CustomerInformation</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <br />
+            @using (Html.BeginForm("Create", "Order"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+                    @Html.EditorForModel()
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-sm-offset-3 col-md-10 col-sm-9 col-xs-12">
+                            <input type="submit" value="@Resource.SaveAndContinueEdit" class="btn btn-primary" />
+                            <a href="@Url.Action("Index")" class="btn btn-default">@Resource.BackToList</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div> 
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                defaultDate: '@DateTime.Now.ToString(@Resource.DateTimeFormat)',
+                format: 'HH:mm DD/MM/YYYY'
+            });
+        });
+
+        $(document).ready(function () {
+            $('select').select2({
+                theme: "bootstrap"
+            });
+        });
+
+    </script>
+}

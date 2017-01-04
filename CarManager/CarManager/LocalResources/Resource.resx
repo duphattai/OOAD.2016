@@ -307,6 +307,24 @@
     <value>Giá hiện tại</value>
   </data>
   <data name="DateTimeFormat" xml:space="preserve">
-    <value>HH:mm DD/MM/yyyy</value>
+    <value>HH:mm dd/MM/yyyy</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Đặt vé</value>
+  </data>
+  <data name="SearchBy" xml:space="preserve">
+    <value>Tìm kiếm theo {0}</value>
+  </data>
+  <data name="OrderDate" xml:space="preserve">
+    <value>Ngày đặt</value>
+  </data>
+  <data name="Seat" xml:space="preserve">
+    <value>Ghế</value>
+  </data>
+  <data name="CustomerInformation" xml:space="preserve">
+    <value>Thông tin khách hàng</value>
+  </data>
+  <data name="PickUp" xml:space="preserve">
+    <value>Địa chỉ đón khách</value>
   </data>
 </root>

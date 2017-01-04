@@ -1,0 +1,44 @@
+﻿@model CarManager.Areas.Admin.Models.OrderModel
+@{
+
+}
+
+@Html.HiddenFor(model => model.IdOrder)
+<div class="form-group">
+    @Html.LabelFor(model => model.OrderName, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.OrderName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.OrderName)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-6 col-sm-9 col-xs-12">
+        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PhoneNumber)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.OrderDate, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-4 col-sm-9 col-xs-12">
+        <div class="form-group">
+            <div class='input-group date' id="datetimepicker">
+                @Html.TextBoxFor(model => model.OrderDate, new { @class = "form-control" })
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            @Html.ValidationMessageFor(model => model.OrderDate)
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.PickUp, new { @class = "control-label col-md-2 col-sm-3 col-xs-12" })
+    <div class="col-md-10 col-sm-9 col-xs-12">
+        @Html.TextAreaFor(model => model.PickUp, new { @class = "form-control" })
+    </div>
+</div>
+
+
+
+

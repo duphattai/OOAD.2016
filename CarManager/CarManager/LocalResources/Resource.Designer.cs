@@ -250,7 +250,16 @@ namespace LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HH:mm DD/MM/yyyy.
+        ///   Looks up a localized string similar to Thông tin khách hàng.
+        /// </summary>
+        public static string CustomerInformation {
+            get {
+                return ResourceManager.GetString("CustomerInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HH:mm dd/MM/yyyy.
         /// </summary>
         public static string DateTimeFormat {
             get {
@@ -421,6 +430,24 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đặt vé.
+        /// </summary>
+        public static string Order {
+            get {
+                return ResourceManager.GetString("Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ngày đặt.
+        /// </summary>
+        public static string OrderDate {
+            get {
+                return ResourceManager.GetString("OrderDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trang {0} trong {1}.
         /// </summary>
         public static string PaginationTxt {
@@ -453,6 +480,15 @@ namespace LocalResources {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Địa chỉ đón khách.
+        /// </summary>
+        public static string PickUp {
+            get {
+                return ResourceManager.GetString("PickUp", resourceCulture);
             }
         }
         
@@ -538,11 +574,29 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tìm kiếm theo {0}.
+        /// </summary>
+        public static string SearchBy {
+            get {
+                return ResourceManager.GetString("SearchBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tìm kiếm....
         /// </summary>
         public static string SearchPlaceholder {
             get {
                 return ResourceManager.GetString("SearchPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ghế.
+        /// </summary>
+        public static string Seat {
+            get {
+                return ResourceManager.GetString("Seat", resourceCulture);
             }
         }
         

@@ -165,6 +165,7 @@ namespace CarManager.Areas.Admin.Controllers
                 model.TotalSeat = schedule.Car.TotalSeat;
                 model.Driver = schedule.Car.Driver1;
             }
+         
 
             return View("InsertOrUpdate", model);
         }

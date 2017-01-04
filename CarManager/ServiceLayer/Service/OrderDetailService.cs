@@ -9,6 +9,7 @@ namespace ServiceLayer.Service
 {
     public interface IOrderDetailService
     {
+        IEnumerable<OrderDetail> GetByOrderID(int id);
     }
     public class OrderDetailService : IOrderDetailService
     {
@@ -16,6 +17,11 @@ namespace ServiceLayer.Service
         public OrderDetailService(CarManagerEntities db)
         {
             _database = db;
+        }
+
+        public IEnumerable<OrderDetail> GetByOrderID(int id)
+        {
+            return _database.OrderDetails.Where(t => t.IdOrder == id);
         }
     }
 }

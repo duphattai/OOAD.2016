@@ -28,6 +28,7 @@ namespace CarManager.Infrastructure.Mapping
 
             // Schedule
             CreateMap<ScheduleModel, Schedule>();
+            CreateMap<OrderModel, Order>();
         }
     }
 }

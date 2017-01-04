@@ -1,0 +1,94 @@
+﻿@model CarManager.Areas.Admin.Models.OrderFilterModel
+
+@{
+    ViewBag.Title = Resource.Order;
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>@Resource.Order</h3>
+    </div>
+    <div class="title_right">
+        <div class="pull-right">
+            @Html.ActionLink(@Resource.Create, "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+    @using (Ajax.BeginForm("OrdersList", null, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "list", HttpMethod = "Get" }, new { id = "filter_div" }))
+    {
+        <div class="form-group clearfix">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <label class="control-label">@Resource.Channel</label>
+                @Html.DropDownListFor(model => model.IdChannel, @ViewBag.Channels as SelectList, @Resource.All, new { @class = "form-control" })
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <label class="control-label">@Resource.StartTime</label>
+                <div class="form-group">
+                    <div class='input-group date datetimepicker'>
+                        @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label class="control-label">@string.Format(Resource.SearchBy, Resource.FullName)</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.SearchString, new { @class = "form-control", @placeholder = @Resource.SearchPlaceholder })
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                <label class="control-label">@string.Format(Resource.SearchBy, Resource.Phone)</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = @Resource.SearchPlaceholder })
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="pull-left">
+        <h5>
+            <span class="field-validation-error" id="error_message">
+            </span>
+        </h5>
+    </div>
+    <div id="list">
+        @{Html.RenderAction("OrdersList");}
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#IdChannel').change(function () {
+            $('#filter_div').submit();
+        });
+
+        // delete item
+        $('.delete_item').on('confirmed.bs.confirmation', function (event) {
+
+            var deleteUrl = '@Url.Action("Delete")' + "/" + $(this).attr('id');
+            $.post(deleteUrl, function (data) {
+                if (data.length != 0) {
+                    $('#list').html(data);
+                } else {
+                    $('#error_message').html('@Resource.ExistForeignKeyError');
+                }
+            });
+        })
+
+        $(document).ready(function () {
+            $('select').select2({
+                theme: "bootstrap"
+            });
+        });
+    </script>
+}

@@ -1,0 +1,83 @@
+﻿@model IPagedList<CarManager.Areas.Admin.Models.OrderItemModel>
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<table class="table table-hover">
+    <thead class="thead-inverse">
+        <tr>
+            <th class="col-lg-1">
+                @Resource.ID
+            </th>
+            <th class="col-lg-3">
+                @Resource.FullName
+            </th>
+            <th class="col-lg-2">
+                @Resource.Phone
+            </th>
+            <th class="col-lg-2">
+                @Resource.OrderDate
+            </th>
+            <th class="col-lg-2">
+                @Resource.Seat
+            </th>
+            <th class="col-lg-2">
+                @Resource.Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seats)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit", new { id = item.IdOrder })" class="btn btn-default">
+                            <i class="fa fa-pencil" aria-hidden="true"></i> @Resource.Edit
+                        </a>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+
+                        <ul class="dropdown-menu btn-dropdown-menu" role="menu">
+                            <li>
+                                <a href="@Url.Action("Detail", new { id = item.IdOrder })">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> @Resource.View
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="confirmation" href="javascript:void(0)" class="delete_item" id="@string.Format("{0}?page={1}", item.IdOrder, @Model.PageNumber)">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i> @Resource.Delete
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+</table>
+
+<div class="pull-left">
+    @string.Format(Resource.PaginationTxt, Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber, @Model.PageCount)
+</div>
+<div class="pull-right">
+    @Html.PagedListPager(Model, page => Url.Action("OrdersList", new { page, @ViewBag.SearchString, @ViewBag.Phone, @ViewBag.StartDate, @ViewBag.IdChannel }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "list", InsertionMode = InsertionMode.Replace }))
+</div>
+
