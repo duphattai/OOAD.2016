@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,6 +179,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ScheduleController.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="Areas\Admin\Controllers\ChannelController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Models\ReportModels.cs" />
     <Compile Include="Areas\Admin\Models\AccountModels.cs" />
     <Compile Include="Areas\Admin\Models\CarDiagramModel.cs" />
     <Compile Include="Areas\Admin\Models\CarModel.cs" />
@@ -209,6 +212,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\report.css" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -219,8 +223,10 @@
     <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\report\morris.css" />
     <Content Include="Content\select2.css" />
     <Content Include="Content\sm-core-css.css" />
+    <Content Include="Content\report\style.css" />
     <Content Include="Content\swiper.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -229,6 +235,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap-confirmation.js" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
@@ -279,6 +286,8 @@
     <Content Include="Areas\Admin\Views\Shared\DisplayTemplates\ChannelModel.cshtml" />
     <Content Include="Areas\Admin\Views\Channel\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Order\TicketSearch.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\ReportByMonth.cshtml" />
+    <Content Include="Areas\Admin\Views\Report\ReportByYear.cshtml" />
     <Content Include="Areas\Admin\Views\Order\OrdersList.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\OrderModel.cshtml" />
@@ -298,10 +307,14 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\report\graph.js" />
+    <Content Include="Scripts\report\morris.js" />
+    <Content Include="Scripts\report\raphael-min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\select2\select2.js" />
@@ -327,6 +340,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>

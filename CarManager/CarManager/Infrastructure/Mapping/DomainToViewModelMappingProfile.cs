@@ -36,6 +36,7 @@ namespace CarManager.Infrastructure.Mapping
             CreateMap<Account, AccountEditModel>();
             CreateMap<Account, AccountItemModel>();
 
+
             // Schedule
             CreateMap<Schedule, ScheduleItemModel>();
             CreateMap<Schedule, ScheduleModel>();
@@ -43,6 +44,9 @@ namespace CarManager.Infrastructure.Mapping
             // Order
             CreateMap<Order, OrderItemModel>();
             CreateMap<Order, OrderModel>();
+
+            CreateMap<ReportByDate_Result, ReportModel>();
+
         }
     }
 }

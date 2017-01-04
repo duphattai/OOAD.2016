@@ -43,6 +43,7 @@ namespace CarManager
                       "~/Content/font-awesome.css",
                       "~/Content/select2.css",
                       "~/Content/admin.css",
+                      "~/Content/report.css",
                       "~/Content/jquery-ui.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-datetimepicker.css"

@@ -26,9 +26,13 @@ namespace CarManager.Infrastructure.Mapping
 
             CreateMap<ChannelModel, Channel>();
 
+
             // Schedule
             CreateMap<ScheduleModel, Schedule>();
             CreateMap<OrderModel, Order>();
+
+            CreateMap<ReportModel, ReportByDate_Result>();
+
         }
     }
 }
