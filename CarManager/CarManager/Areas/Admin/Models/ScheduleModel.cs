@@ -11,10 +11,7 @@ namespace CarManager.Areas.Admin.Models
     public class ScheduleFilterModel
     {
         public int? IdChannel { get; set; }
-
-        [DataType(DataType.DateTime, ErrorMessageResourceName = "InvalidFormat", ErrorMessageResourceType = typeof(Resource))]
-        [DisplayFormat(DataFormatString = "{ HH:mm DD/MM/yyyy }")]
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
     }
 
     public class ScheduleItemModel
@@ -40,7 +37,7 @@ namespace CarManager.Areas.Admin.Models
         public int IdCar { get; set; }
 
         [DataType(DataType.DateTime, ErrorMessageResourceName = "InvalidFormat", ErrorMessageResourceType = typeof(Resource))]
-        [DisplayFormat(DataFormatString = "{ HH:mm DD/MM/yyyy }")]
+        [DisplayFormat(DataFormatString = "{ HH:mm dd/MM/yyyy }")]
         [Display(Name = "StartTime", ResourceType = typeof(Resource))]
         public System.DateTime StartTime { get; set; }
         

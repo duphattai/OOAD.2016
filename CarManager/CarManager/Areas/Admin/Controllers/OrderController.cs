@@ -108,10 +108,14 @@ namespace CarManager.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                DateTime? startDate = null;
+                if (!string.IsNullOrEmpty(filter.StartDate))
+                    startDate = DateTime.Parse(filter.StartDate);
+
                 ViewBag.IdChannel = filter.IdChannel;
                 ViewBag.StartDate = filter.StartDate;
 
-                var model = _mapper.Map<IEnumerable<ScheduleItemModel>>(_scheduleService.GetList(filter.IdChannel, filter.StartDate)).ToPagedList(page, _pageSize);
+                var model = _mapper.Map<IEnumerable<ScheduleItemModel>>(_scheduleService.GetList(filter.IdChannel, startDate)).ToPagedList(page, _pageSize);
                 return PartialView(model);
             }
             else

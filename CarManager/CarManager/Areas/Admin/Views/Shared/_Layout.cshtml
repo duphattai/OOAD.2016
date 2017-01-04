@@ -204,8 +204,8 @@
         // initial datetime picker
         $(function () {
             $('.datetimepicker').datetimepicker({
-                defaultDate: '@DateTime.Now.ToString("HH:mm dd/MM/yyyy")',
-                format: 'HH:mm DD/MM/YYYY'
+                format: 'HH:mm DD/MM/YYYY',
+                defaultDate: '@DateTime.Now.ToString()'
             });
         });
     </script>

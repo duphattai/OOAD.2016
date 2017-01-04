@@ -45,7 +45,7 @@
     <div class="col-md-4 col-sm-9 col-xs-12">
         <div class="form-group">
             <div class='input-group date' id="datetimepicker">
-                @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control", Value = @Model.StartTime.ToString(Resource.DateTimeFormat) })
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>

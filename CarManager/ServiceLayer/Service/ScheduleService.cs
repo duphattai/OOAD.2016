@@ -33,9 +33,11 @@ namespace ServiceLayer.Service
             else
                 result = _database.Schedules.Where(t => t.IdChannel == IdChannel.Value);
 
-            if (startDate != null)
-                result = result.Where(t => t.StartTime.Value > startDate.Value);
 
+            if (startDate == null)
+                startDate = DateTime.Now;
+
+            result = result.Where(t => DateTime.Compare(t.StartTime.Value, startDate.Value) >= 0);
 
             return result;
         }
@@ -64,7 +66,7 @@ namespace ServiceLayer.Service
         {
             try
             {
-                var entity = Get(model.IdCar);
+                var entity = Get(model.IdSchedule);
                 _database.Entry(entity).CurrentValues.SetValues(model);
                 _database.SaveChanges();
 

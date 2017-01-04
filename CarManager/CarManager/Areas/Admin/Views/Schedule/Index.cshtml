@@ -28,7 +28,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <label class="control-label">@Resource.StartTime</label>
                     <div class="form-group">
-                        <div class='input-group date datetimepicker'>
+                        <div class='input-group date' id="datetimepicker">
                             @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control" })
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -53,8 +53,17 @@
 
 @section scripts{
     <script>
-        $('#IdBusStationFrom, #IdBusStationTo').change(function () {
+        $('#IdChannel').change(function () {
             $('#filter_div').submit();
+        });
+
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                format: 'HH:mm DD/MM/YYYY',
+                defaultDate: '@DateTime.Now.ToString()'
+            }).on('dp.change', function (e) {
+                $('#filter_div').submit();
+            });
         });
 
         // delete item
@@ -75,5 +84,5 @@
                 theme: "bootstrap"
             });
         });
-    </script>
+</script>
 }

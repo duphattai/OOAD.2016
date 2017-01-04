@@ -11,6 +11,7 @@ using PagedList;
 using DataLayer;
 using CarManager.Infrastructure.Attributes;
 using LocalResources;
+using System.Globalization;
 
 
 
@@ -50,17 +51,22 @@ namespace CarManager.Areas.Admin.Controllers
                 ViewBag.Channels = new SelectList(list, "Value", "Text");
             }
 
-            return View();
+            return View(new ScheduleFilterModel());
         }
 
         public PartialViewResult SchedulesList(ScheduleFilterModel filter, int page = 1)
         {
             if (ModelState.IsValid)
             {
+                DateTime? startDate = null;
+                if (!string.IsNullOrEmpty(filter.StartDate))
+                    startDate = DateTime.Parse(filter.StartDate);
+                
+
                 ViewBag.IdChannel = filter.IdChannel;
                 ViewBag.StartDate = filter.StartDate;
 
-                var model = _mapper.Map<IEnumerable<ScheduleItemModel>>(_scheduleService.GetList(filter.IdChannel, filter.StartDate)).ToPagedList(page, _pageSize);
+                var model = _mapper.Map<IEnumerable<ScheduleItemModel>>(_scheduleService.GetList(filter.IdChannel, startDate)).ToPagedList(page, _pageSize);
                 return PartialView(model);
             }
             else
