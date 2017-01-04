@@ -88,6 +88,7 @@
           <Property Name="IsPaid" Type="bit" />
           <Property Name="SeatNumber" Type="int" />
           <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="FloorNumber" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -368,6 +369,7 @@
           <Property Name="PaymentDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__IdOrd__286302EC" FromRole="OrderDetail" ToRole="Order" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK__OrderDeta__IdSch__29572725" FromRole="OrderDetail" ToRole="Schedule" />
+          <Property Name="FloorNumber" Type="Int32" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -642,6 +644,7 @@
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="CarManagerModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
                 <ScalarProperty Name="IdOrderDetail" ColumnName="IdOrderDetail" />
                 <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
                 <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />

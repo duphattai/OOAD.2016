@@ -47,7 +47,7 @@
                 </td>
                 <td>
                     <div class="btn-group">
-                        <a href="@Url.Action("Edit", new { id = item.IdOrder })" class="btn btn-default">
+                        <a href="@Url.Action("EditOrder", new { id = item.IdOrder, IdSchedule = item.IdSchedule })" class="btn btn-default">
                             <i class="fa fa-pencil" aria-hidden="true"></i> @Resource.Edit
                         </a>
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

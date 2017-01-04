@@ -1,0 +1,86 @@
+﻿@model CarManager.Areas.Admin.Models.OrderEditModel
+@{
+    ViewBag.Title = Resource.Order;
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            @Resource.Order
+            <small>@Resource.Edit</small>
+        </h3>
+    </div>
+</div>
+
+<div class="main-content">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">@Resource.CustomerInformation</a></li>
+        <li><a data-toggle="tab" href="#order_detail">@Resource.OrderDetail</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <br />
+            @using (Html.BeginForm("Create", "Order"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+                    @Html.EditorFor(model => model.order)
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-sm-offset-3 col-md-10 col-sm-9 col-xs-12">
+                            <input type="submit" value="@Resource.SaveAndContinueEdit" class="btn btn-primary" />
+                            <a href="@Url.Action("Index")" class="btn btn-default">@Resource.BackToList</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    
+        <div id="order_detail" class="tab-pane fade">
+            <div id="seat_chart" class="col-lg-8">
+                @{Html.RenderAction("SeatChart", new { IdSchedule = @Model.order.IdSchedule, IdOrder = Model.order.IdOrder });}
+            </div>
+
+            <div class="form-group clearfix col-lg-4">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <label class="control-label">@Resource.Channel</label>
+                    <div class="form-group">
+                        <label class="form-control">@ViewBag.Channel</label>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <label class="control-label">@Resource.StartTime</label>
+                    <div class="form-group">
+                        <label class="form-control">@ViewBag.StartTime</label>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label class="control-label">@Resource.Price</label>
+                    <div class="form-group">
+                        <label class="form-control">@ViewBag.Price</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                defaultDate: '@DateTime.Now.ToString(@Resource.DateTimeFormat)',
+                format: 'HH:mm DD/MM/YYYY'
+            });
+        });
+
+        $(document).ready(function () {
+            $('select').select2({
+                theme: "bootstrap"
+            });
+        });
+
+    </script>
+}

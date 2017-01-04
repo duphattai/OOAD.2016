@@ -60,8 +60,7 @@ namespace CarManager.Areas.Admin.Controllers
             {
                 DateTime? startDate = null;
                 if (!string.IsNullOrEmpty(filter.StartDate))
-                    startDate = DateTime.Parse(filter.StartDate);
-                
+                    startDate = DateTime.Parse(filter.StartDate);              
 
                 ViewBag.IdChannel = filter.IdChannel;
                 ViewBag.StartDate = filter.StartDate;

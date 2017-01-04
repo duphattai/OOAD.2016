@@ -448,6 +448,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thông tin chi tiết đặt vé.
+        /// </summary>
+        public static string OrderDetail {
+            get {
+                return ResourceManager.GetString("OrderDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trang {0} trong {1}.
         /// </summary>
         public static string PaginationTxt {
@@ -624,6 +633,15 @@ namespace LocalResources {
         public static string SeatDiagram {
             get {
                 return ResourceManager.GetString("SeatDiagram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vị trí ghế.
+        /// </summary>
+        public static string SeatNumber {
+            get {
+                return ResourceManager.GetString("SeatNumber", resourceCulture);
             }
         }
         

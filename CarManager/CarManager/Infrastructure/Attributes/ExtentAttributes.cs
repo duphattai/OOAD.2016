@@ -44,8 +44,8 @@ namespace CarManager.Infrastructure.Attributes
             // User doesn't login
             if (filterContext.HttpContext.Session["UserRoles"] == null)
             {
-                
-                string returnUrl = filterContext.RequestContext.HttpContext.Request.CurrentExecutionFilePath;
+                //string returnUrl = filterContext.RequestContext.HttpContext.Request.CurrentExecutionFilePath;
+                string returnUrl = filterContext.RequestContext.HttpContext.Request.RawUrl;
                 filterContext.Result = new RedirectToRouteResult("Admin_Login", new RouteValueDictionary ( new {returnUrl = returnUrl} ));
             }
             else // Login and access denied

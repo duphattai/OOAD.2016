@@ -41,18 +41,18 @@
 
 @section scripts{
     <script>
-        $(function () {
-            $('#datetimepicker').datetimepicker({
-                defaultDate: '@DateTime.Now.ToString(@Resource.DateTimeFormat)',
-                format: 'HH:mm DD/MM/YYYY'
-            });
+    $(function () {
+        $('#datetimepicker').datetimepicker({
+            format: 'HH:mm DD/MM/YYYY',
+            defaultDate: '@DateTime.Now.ToString()'
         });
+    });
 
-        $(document).ready(function () {
-            $('select').select2({
-                theme: "bootstrap"
-            });
+    $(document).ready(function () {
+        $('select').select2({
+            theme: "bootstrap"
         });
+    });
 
     </script>
 }

@@ -20,6 +20,7 @@ namespace DataLayer
         public Nullable<bool> IsPaid { get; set; }
         public Nullable<int> SeatNumber { get; set; }
         public Nullable<System.DateTime> PaymentDate { get; set; }
+        public Nullable<int> FloorNumber { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Schedule Schedule { get; set; }

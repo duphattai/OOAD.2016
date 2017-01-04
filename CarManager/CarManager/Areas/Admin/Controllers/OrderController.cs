@@ -10,6 +10,7 @@ using PagedList.Mvc;
 using PagedList;
 using DataLayer;
 using CarManager.Infrastructure.Attributes;
+using LocalResources;
 
 
 
@@ -79,9 +80,12 @@ namespace CarManager.Areas.Admin.Controllers
             var model = _mapper.Map<IEnumerable<OrderItemModel>>(orders).ToPagedList(page, _pageSize);
             foreach (var item in model)
             {
-                var seats = _orderDetailService.GetByOrderID(item.IdOrder).Select(o => o.SeatNumber);
+                var seats = _orderDetailService.GetByOrderID(item.IdOrder);
                 if (seats.Any())
-                    item.Seats = string.Join(", ", seats);
+                {
+                    item.Seats = string.Join(", ", seats.Select(o => o.SeatNumber));
+                    item.IdSchedule = seats.Select(o => o.IdSchedule).First();
+                }
             }
 
             // store filter 
@@ -123,9 +127,105 @@ namespace CarManager.Areas.Admin.Controllers
         }
         #endregion
 
-        public ActionResult Create()
+        public ActionResult Create(int IdSchedule)
         {
-            return View();
+            var model = new OrderModel() 
+            { 
+                IdSchedule = IdSchedule,
+                OrderDate = DateTime.Now
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(OrderModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = _mapper.Map<Order>(model);
+                entity.OrderDate = DateTime.Now;
+
+                string error = _orderService.Insert(entity);
+                if (error != null)
+                {
+                    ModelState.AddModelError(string.Empty, error);
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("EditOrder", new { IdSchedule = model.IdSchedule, id = entity.IdOrder });
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, Resource.CannotInsertData);
+                return View(model);
+            }
+        }
+
+        public ActionResult SeatChart(int IdSchedule, int IdOrder, int? CurrentFloor = null)
+        {
+            var schedule = _scheduleService.Get(IdSchedule);
+            var SeatsList = new List<IEnumerable<string>>();
+            var model = new SeatChartModel();
+            
+            if (schedule != null)
+            {
+                var carDiagram = schedule.Car.CarDiagram;
+                if (carDiagram != null)
+                {
+                    // get floors
+                    model.NumberFloors = carDiagram.NumberFloors;
+                    CurrentFloor = CurrentFloor != null ? CurrentFloor : 1; // default current floor 1
+
+                    // get seat chart
+                    var rows = carDiagram.SeatDiagram.Split('\n').Where(o => !string.IsNullOrEmpty(o));
+                    foreach (var r in rows)
+                    {
+                        var seats = r.Split(' ').Select(o => o.Replace("x", ""));
+                        SeatsList.Add(seats);
+                    }
+                }
+            }
+
+
+            model.CurrentFloor = CurrentFloor.Value;
+            model.SeatsList = SeatsList;
+            ViewBag.IdSchedule = IdSchedule;
+            ViewBag.IdOrder = IdOrder;
+
+            return PartialView(model);
+        }
+
+        public ActionResult EditOrder(int id, int IdSchedule)
+        {
+            var model = new OrderEditModel();
+            // customer information
+            model.order = _mapper.Map<OrderModel>(_orderService.Get(id));
+            model.order.IdSchedule = IdSchedule;
+
+
+            // get information schedule
+            var schedule = _scheduleService.Get(IdSchedule);
+            if (schedule != null)
+            {
+                ViewBag.Channel = schedule.Channel.BusStationFrom.Name + " - " +schedule.Channel.BusStationTo.Name;
+                ViewBag.StartTime = schedule.StartTime.Value.ToString(Resource.DateTimeFormat);
+                ViewBag.Price = schedule.Price;
+            }
+            
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult InsertSeat(int[] SeatNumbers, int? IdSchedule, int? IdOrder)
+        {
+            if (ModelState.IsValid)
+            {
+                
+            }
+            return RedirectToAction("EditOrder", new { id = IdOrder, IdSchedule = IdSchedule });
         }
     }
 }

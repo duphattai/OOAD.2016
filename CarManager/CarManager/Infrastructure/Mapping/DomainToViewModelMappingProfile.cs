@@ -47,6 +47,8 @@ namespace CarManager.Infrastructure.Mapping
 
             CreateMap<ReportByDate_Result, ReportModel>();
 
+            CreateMap<OrderDetail, OrderDetailModel>();
+
         }
     }
 }
