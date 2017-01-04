@@ -327,12 +327,11 @@
   </data>
   <data name="PickUp" xml:space="preserve">
     <value>Địa chỉ đón khách</value>
-
+ </data>
   <data name="ReportByMonth" xml:space="preserve">
     <value>Báo cáo doanh thu tháng</value>
   </data>
   <data name="ReportByYear" xml:space="preserve">
     <value>Báo cáo doanh thu năm</value>
-
   </data>
 </root>

@@ -547,7 +547,7 @@
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
           <FunctionImport Name="ReportByDate" ReturnType="Collection(CarManagerModel.ReportByDate_Result)">
-            <Parameter Name="pDate" Mode="In" Type="String" />
+          <Parameter Name="pDate" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ReportByDate_Result">
