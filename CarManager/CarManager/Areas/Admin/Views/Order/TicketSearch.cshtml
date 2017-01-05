@@ -84,7 +84,7 @@
         // delete item
         $('.delete_item').on('confirmed.bs.confirmation', function (event) {
 
-            var deleteUrl = '@Url.Action("Delete")' + "/" + $(this).attr('id');
+            var deleteUrl = '@Url.Action("DeleteByOrderID")' + "/" + $(this).attr('id');
             $.post(deleteUrl, function (data) {
                 if (data.length != 0) {
                     $('#list').html(data);

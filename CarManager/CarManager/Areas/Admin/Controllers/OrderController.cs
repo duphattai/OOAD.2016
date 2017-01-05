@@ -283,6 +283,16 @@ namespace CarManager.Areas.Admin.Controllers
             return RedirectToAction("EditOrder", new { id = id, IdSchedule = IdSchedule });
         }
 
+        public ActionResult DeleteByOrderID(int id)
+        {
+            if (_orderDetailService.DeleteByOrderID(id) != null)
+            {
+                _orderService.Delete(id);
+            }
+
+            return RedirectToAction("OrdersList");
+        }
+
         public ActionResult Payment(int id, int[] IdOrderDetails, int IdSchedule)
         {
             _orderDetailService.UpdatePayment(IdOrderDetails);

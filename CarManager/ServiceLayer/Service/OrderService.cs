@@ -96,7 +96,7 @@ namespace ServiceLayer.Service
             IEnumerable<int> orderIDs = orderDetails.Select(t => t.IdOrder).Distinct();
             IEnumerable<Order> orders;
             if (!string.IsNullOrEmpty(SearchString))
-                orders = _database.Orders.Where(t => t.OrderName.Contains(SearchString) && orderIDs.Contains(t.IdOrder));
+                orders = _database.Orders.Where(t => t.OrderName.ToLower().Contains(SearchString.ToLower()) && orderIDs.Contains(t.IdOrder));
             else
                 orders = _database.Orders.Where(t => orderIDs.Contains(t.IdOrder));
             if (!orders.Any())
@@ -104,7 +104,7 @@ namespace ServiceLayer.Service
 
             // from phone number
             if (!string.IsNullOrEmpty(SearchString))
-                orders = orders.Where(t => t.PhoneNumber.Contains(Phone));
+                orders = orders.Where(t => t.PhoneNumber.ToLower().Contains(Phone.ToLower()));
          
             return orders;
         }
