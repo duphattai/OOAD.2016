@@ -103,8 +103,8 @@ namespace ServiceLayer.Service
                 return Enumerable.Empty<Order>();
 
             // from phone number
-            if (!string.IsNullOrEmpty(SearchString))
-                orders = orders.Where(t => t.PhoneNumber.ToLower().Contains(Phone.ToLower()));
+            if (!string.IsNullOrEmpty(Phone))
+                orders = orders.Where(t => t.PhoneNumber.Contains(Phone));
          
             return orders;
         }

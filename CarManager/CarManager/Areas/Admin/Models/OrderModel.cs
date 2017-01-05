@@ -25,7 +25,7 @@ namespace CarManager.Areas.Admin.Models
     {
         public int? IdChannel { get; set; }
         public string SearchString { get; set; }
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
         public string Phone { get; set; }
     }
 

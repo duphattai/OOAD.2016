@@ -94,7 +94,11 @@ namespace ServiceLayer.Service
             {
                 var orderDetails = _database.OrderDetails.Where(t => Ids.Contains(t.IdOrderDetail));
                 foreach (var item in orderDetails)
+                {
                     item.IsPaid = true;
+                    item.PaymentDate = DateTime.Now;
+                }
+                    
 
                 _database.SaveChanges();
 

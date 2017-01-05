@@ -65,7 +65,12 @@ namespace CarManager.Areas.Admin.Controllers
         public PartialViewResult OrdersList(OrderFilterModel filter, int page = 1)
         {
             // get schedules from channel, start date
-            var schedules = _scheduleService.GetList(filter.IdChannel, filter.StartDate);
+            DateTime startDate = DateTime.Now;
+            if (!string.IsNullOrEmpty(filter.StartDate))
+                DateTime.TryParse(filter.StartDate, out startDate);
+            
+       
+            var schedules = _scheduleService.GetList(filter.IdChannel, startDate);
 
             // get orders
             List<Order> orders = new List<Order>();
@@ -242,6 +247,32 @@ namespace CarManager.Areas.Admin.Controllers
             return View(model);
         }
 
+
+        [HttpPost]
+        public ActionResult Edit(OrderModel order)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = _mapper.Map<Order>(order);
+                entity.OrderDate = DateTime.Now;
+
+                string error = _orderService.Update(entity);
+                if (error != null)
+                {
+                    ModelState.AddModelError(string.Empty, error);
+                    return View(order);
+                }
+                else
+                {
+                    return RedirectToAction("EditOrder", new { IdSchedule = order.IdSchedule, id = entity.IdOrder });
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, Resource.CannotInsertData);
+                return View(order);
+            }
+        }
 
         [HttpPost]
         public ActionResult InsertSeat(SeatChartInforModel model, int? IdOrder)
