@@ -1,8 +1,6 @@
-﻿@model IPagedList<CarManager.Areas.Admin.Models.OrderItemModel>
-
+﻿﻿@model IPagedList<CarManager.Areas.Admin.Models.OrderItemModel>
 @using PagedList.Mvc;
 @using PagedList;
-
 <table class="table table-hover">
     <thead class="thead-inverse">
         <tr>
@@ -54,7 +52,6 @@
                             <span class="caret"></span>
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
-
                         <ul class="dropdown-menu btn-dropdown-menu" role="menu">
                             <li>
                                 <a href="@Url.Action("Detail", new { id = item.IdOrder })">
@@ -72,7 +69,6 @@
             </tr>
         }
 </table>
-
 <div class="pull-left">
     @string.Format(Resource.PaginationTxt, Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber, @Model.PageCount)
 </div>
@@ -80,4 +76,3 @@
     @Html.PagedListPager(Model, page => Url.Action("OrdersList", new { page, @ViewBag.SearchString, @ViewBag.Phone, @ViewBag.StartDate, @ViewBag.IdChannel }),
         PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "list", InsertionMode = InsertionMode.Replace }))
 </div>
-
