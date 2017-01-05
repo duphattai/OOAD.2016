@@ -163,41 +163,64 @@ namespace CarManager.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult SeatChart(int IdSchedule, int IdOrder, int? CurrentFloor = null)
+        public ActionResult SeatChart(int IdSchedule, int IdOrder, int CurrentFloor = 1)
         {
             var schedule = _scheduleService.Get(IdSchedule);
-            var SeatsList = new List<IEnumerable<string>>();
-            var model = new SeatChartModel();
+            var SeatsList = new List<IEnumerable<int>>();
+            var model = new SeatChartInforModel();
             
-            if (schedule != null)
+            if (schedule != null && schedule.Car.CarDiagram != null)
             {
                 var carDiagram = schedule.Car.CarDiagram;
-                if (carDiagram != null)
-                {
-                    // get floors
-                    model.NumberFloors = carDiagram.NumberFloors;
-                    CurrentFloor = CurrentFloor != null ? CurrentFloor : 1; // default current floor 1
 
-                    // get seat chart
-                    var rows = carDiagram.SeatDiagram.Split('\n').Where(o => !string.IsNullOrEmpty(o));
-                    foreach (var r in rows)
-                    {
-                        var seats = r.Split(' ').Select(o => o.Replace("x", ""));
-                        SeatsList.Add(seats);
-                    }
+                // get floors
+                model.NumberFloors = carDiagram.NumberFloors;
+
+                // get seat chart
+                var rows = carDiagram.SeatDiagram.Split('\n').Where(o => !string.IsNullOrEmpty(o));
+                foreach (var r in rows)
+                {
+                    var seats = r.Split(' ').Select(o => int.Parse(o.Replace("x", "")));
+                    SeatsList.Add(seats);
                 }
+                
+                // get booked seats by current floor
+                var currentFloorSeats = _orderDetailService.GetByScheduleID(IdSchedule, CurrentFloor);
+                if (currentFloorSeats.Any())
+                {
+                    model.BookedSeatsPayment = currentFloorSeats.Where(t => t.IsPaid.Value).Select(o => o.SeatNumber.Value);
+                    model.BookedSeatsNotPayment = currentFloorSeats.Where(t => !t.IsPaid.Value).Select(o => o.SeatNumber.Value);
+                }
+
+                // get empty seats
+                var emptySeats = new List<int>();
+                foreach (var item in SeatsList)
+                {
+                    if (currentFloorSeats.Any())
+                    {
+                        var except = item.Except(currentFloorSeats.Select(t => t.SeatNumber.Value));
+                        if (except.Any())
+                            emptySeats.AddRange(except);
+                    }
+                    else
+                        emptySeats.AddRange(item);
+                }
+                model.EmptySeats = emptySeats;
+
+                // get customer seats
+                model.CustomerSeats = _mapper.Map<IEnumerable<OrderDetailModel>>(_orderDetailService.GetByOrderID(IdOrder));
             }
 
 
-            model.CurrentFloor = CurrentFloor.Value;
+            model.CurrentFloor = CurrentFloor;
             model.SeatsList = SeatsList;
-            ViewBag.IdSchedule = IdSchedule;
+            model.IdSchedule = IdSchedule;
             ViewBag.IdOrder = IdOrder;
 
             return PartialView(model);
         }
 
-        public ActionResult EditOrder(int id, int IdSchedule)
+        public ActionResult EditOrder(int id, int IdSchedule, int CurrentFloor = 1)
         {
             var model = new OrderEditModel();
             // customer information
@@ -212,20 +235,59 @@ namespace CarManager.Areas.Admin.Controllers
                 ViewBag.Channel = schedule.Channel.BusStationFrom.Name + " - " +schedule.Channel.BusStationTo.Name;
                 ViewBag.StartTime = schedule.StartTime.Value.ToString(Resource.DateTimeFormat);
                 ViewBag.Price = schedule.Price;
+                ViewBag.CarNumberPlate = schedule.Car.CarNumberPlate;
             }
-            
+            ViewBag.CurrentFloor = CurrentFloor;
+
             return View(model);
         }
 
 
         [HttpPost]
-        public ActionResult InsertSeat(int[] SeatNumbers, int? IdSchedule, int? IdOrder)
+        public ActionResult InsertSeat(SeatChartInforModel model, int? IdOrder)
         {
             if (ModelState.IsValid)
             {
+                var bookedSeats = _orderDetailService.GetByScheduleID(model.IdSchedule, model.CurrentFloor);
                 
+                // check seat number existed
+                bool existed = false;
+                if (bookedSeats.Any())
+                    existed = bookedSeats.Select(t => t.SeatNumber.Value).Intersect(model.SeatNumbers).Any();
+
+                if (!existed) // not exist
+                {
+                    foreach (var seat in model.SeatNumbers)
+                    {
+                        var entity = new OrderDetail() 
+                        {
+                            FloorNumber = model.CurrentFloor,
+                            IdOrder = IdOrder.Value,
+                            IdSchedule = model.IdSchedule,
+                            SeatNumber = seat,
+                            IsPaid = false
+                        };
+
+                        string error = _orderDetailService.Insert(entity);
+                    }
+                }
             }
-            return RedirectToAction("EditOrder", new { id = IdOrder, IdSchedule = IdSchedule });
+            return RedirectToAction("EditOrder", new { id = IdOrder, IdSchedule = model.IdSchedule });
+        }
+
+
+        public ActionResult Delete(int id, int IdOrderDetail, int IdSchedule)
+        {
+            string error = _orderDetailService.Delete(IdOrderDetail);
+
+            return RedirectToAction("EditOrder", new { id = id, IdSchedule = IdSchedule });
+        }
+
+        public ActionResult Payment(int id, int[] IdOrderDetails, int IdSchedule)
+        {
+            _orderDetailService.UpdatePayment(IdOrderDetails);
+
+            return RedirectToAction("EditOrder", new { id = id, IdSchedule = IdSchedule });
         }
     }
 }

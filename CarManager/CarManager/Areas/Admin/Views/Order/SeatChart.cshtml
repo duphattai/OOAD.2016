@@ -1,4 +1,4 @@
-﻿@model CarManager.Areas.Admin.Models.SeatChartModel
+﻿@model CarManager.Areas.Admin.Models.SeatChartInforModel
 
 @{
     List<int> temp = new List<int>();
@@ -7,7 +7,10 @@
         temp.Add(i);
     }
 
-    var Floors = new SelectList(temp);
+    Model.EmptySeats = Model.EmptySeats.OrderBy(t => t);
+    
+    var Floors = temp.Select(t => new SelectListItem{ Text = t.ToString(), Value = t.ToString()});
+    var emptySeats = Model.EmptySeats.Select(t => new SelectListItem { Text = t.ToString(), Value = t.ToString()});
 }
 
 
@@ -15,16 +18,24 @@
     <table class="table" style="margin-bottom: 0;">
         <tr>
             <td style="border: none;">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <label class="control-label">Tầng</label>
-                    @Html.DropDownListFor(model => model.CurrentFloor, @Floors as SelectList, new { @class = "form-control" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @using (Html.BeginForm("EditOrder", "Order", new { id = @ViewBag.IdOrder, IdSchedule = @Model.IdSchedule }, FormMethod.Post, new { id = "filter_div" }))
+                    {
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4">@Resource.Floor</label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                @Html.DropDownListFor(model => model.CurrentFloor, @Floors as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    }
+                                    
                 </div>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                    <ul style="list-style: none;" class="clearfix">
-                        <li class="col-lg-4">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ul style="list-style: none; margin-bottom: 0" class="clearfix">
+                        <li class="col-lg-6">
                             <i class="fa fa-circle" style="color: #D4D4D4;"></i><br />Chưa thanh toán
                         </li>
-                        <li class="col-lg-4">
+                        <li class="col-lg-6">
                             <i class="fa fa-circle" style="color: red;"></i><br />Đã thanh toán
                         </li>
                     </ul>
@@ -43,9 +54,19 @@
                                     <tr>
                                         @foreach (var seat in row)
                                         {
+                                            string seatStatus = null;
+                                            if(Model.BookedSeatsPayment.Any() && Model.BookedSeatsPayment.Contains(seat))
+                                            {
+                                                seatStatus = "seat_bookedSeatPayment";
+                                            }
+
+                                            if (Model.BookedSeatsNotPayment.Any() && Model.BookedSeatsNotPayment.Contains(seat))
+                                            {
+                                                seatStatus = "seat_bookedSeatNotPayment";
+                                            }
                                             <td>
                                                 <a href="javascript:void(0)" class="link_icon_seat">
-                                                    <img class="icon_seat" src="~/Content/Images/bed-white.png" />
+                                                    <img class="icon_seat @seatStatus" src="~/Content/Images/bed-white.png" />
                                                     <span class="seat_number">
                                                         @seat
                                                     </span>
@@ -63,17 +84,21 @@
         </tr>
     </table>
 </div>
+
 <div class="row">
-    @using (Html.BeginForm("InsertSeat", "Order", new { IdOrder = @ViewBag.IdOrder, IdSchedule = @ViewBag.IdSchedule }, FormMethod.Post))
+    @using (Html.BeginForm("InsertSeat", "Order", new { IdOrder = @ViewBag.IdOrder }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
             @Html.ValidationSummary(true)
 
+            @Html.HiddenFor(model => model.CurrentFloor)
+            @Html.HiddenFor(model => model.IdSchedule)
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <label class="control-label">Chọn ghế</label>
                 <div class="input-group">
-                    @Html.DropDownListFor(model => model.SeatNumbers, @Floors as SelectList, new { @class = "form-control", multiple = "multiple" })
+                    @Html.DropDownListFor(model => model.SeatNumbers, emptySeats as IEnumerable<SelectListItem>, new { @class = "form-control", multiple = "multiple" })
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit">@Resource.Order<i class="fa" aria-hidden="true"></i></button>
                     </span>
@@ -83,3 +108,72 @@
         </div>
     }
 </div>
+<br />
+@if (Model.CustomerSeats.Any())
+{
+    <div>
+        <table class="table table-hover">
+            <thead class="thead-inverse">
+                <tr>
+                    <th class="col-lg-1">
+                        @Resource.ID
+                    </th>
+                    <th class="col-lg-3">
+                        @Resource.SeatNumber
+                    </th>
+                    <th class="col-lg-2">
+                        @Resource.Floor
+                    </th>
+                    <th class="col-lg-3">
+                        @Resource.Payment
+                    </th>
+                    <th class="col-lg-3">
+                        @Resource.Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @using (Html.BeginForm("Payment", "Order", new { id = @ViewBag.IdOrder, IdSchedule = Model.IdSchedule }, FormMethod.Post))
+                {
+                    foreach (var item in Model.CustomerSeats)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdOrderDetail)
+                            </td>
+                            <td>
+                                Ghế số @Html.DisplayFor(modelItem => item.SeatNumber)
+                            </td>
+                            <td>
+                                @Resource.Floor
+                                @Html.DisplayFor(modelItem => item.FloorNumber)
+                            </td>
+                            <td>
+                                @if (item.IsPaid)
+                                {
+                                    @Resource.Paid
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="IdOrderDetails" value="@item.IdOrderDetail" />
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="@Url.Action("Delete", new { id = item.IdOrder, IdOrderDetail = item.IdOrderDetail, IdSchedule = item.IdSchedule })" class="btn btn-default">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> @Resource.Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="5">
+                            <input type="submit" value="@Resource.Payment" class="btn btn-primary pull-right" />
+                        </td>
+                    </tr>
+                }
+        </table>
+    </div>
+}

@@ -115,6 +115,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ghế đã được đặt. Vui lòng chọn lại!.
+        /// </summary>
+        public static string BookedSeatNumbersExistedError {
+            get {
+                return ResourceManager.GetString("BookedSeatNumbersExistedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bến xe.
         /// </summary>
         public static string BusStation {
@@ -349,6 +358,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tầng.
+        /// </summary>
+        public static string Floor {
+            get {
+                return ResourceManager.GetString("Floor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Họ và tên.
         /// </summary>
         public static string FullName {
@@ -466,6 +484,15 @@ namespace LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Đã thanh toán.
+        /// </summary>
+        public static string Paid {
+            get {
+                return ResourceManager.GetString("Paid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mật khẩu.
         /// </summary>
         public static string Password {
@@ -480,6 +507,15 @@ namespace LocalResources {
         public static string PasswordNotMatch {
             get {
                 return ResourceManager.GetString("PasswordNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanh toán.
+        /// </summary>
+        public static string Payment {
+            get {
+                return ResourceManager.GetString("Payment", resourceCulture);
             }
         }
         

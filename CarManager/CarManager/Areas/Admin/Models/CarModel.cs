@@ -50,11 +50,6 @@ namespace CarManager.Areas.Admin.Models
 
         [Display(Name = "TotalSeat", ResourceType = typeof(LocalResources.Resource))]
         public int TotalSeat { get; set; }
-        public int CurrentFloor { get; set; }
-
-        [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Resource))]
-        [Display(Name = "SeatNumber", ResourceType = typeof(LocalResources.Resource))]
-        public int[] SeatNumbers { get; set; }
 
         public SeatChartModel()
         {

@@ -339,4 +339,16 @@
   <data name="SeatNumber" xml:space="preserve">
     <value>Vị trí ghế</value>
   </data>
+  <data name="BookedSeatNumbersExistedError" xml:space="preserve">
+    <value>Ghế đã được đặt. Vui lòng chọn lại!</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Thanh toán</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>Tầng</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>Đã thanh toán</value>
+  </data>
 </root>

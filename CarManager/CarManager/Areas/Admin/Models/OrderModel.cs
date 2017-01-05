@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CarManager.Areas.Admin.Models
 {
@@ -62,6 +63,33 @@ namespace CarManager.Areas.Admin.Models
         public int? FloorNumber { get; set; }
     }
 
+    public class SeatChartInforModel
+    {
+        public int NumberFloors { get; set; }
+        public List<IEnumerable<int>> SeatsList { get; set; }
+
+        public int CurrentFloor { get; set; }
+
+        [Required(ErrorMessageResourceName = "RequiredError", ErrorMessageResourceType = typeof(Resource))]
+        [Display(Name = "SeatNumber", ResourceType = typeof(LocalResources.Resource))]
+        public int[] SeatNumbers { get; set; }
+
+        public int IdSchedule { get; set; }
+
+        // booked seats of customer
+        public IEnumerable<OrderDetailModel> CustomerSeats { get; set; }
+
+        // empty seats of car
+        public IEnumerable<int> EmptySeats { get; set; }
+        public IEnumerable<int> BookedSeatsNotPayment { get; set; }
+        public IEnumerable<int> BookedSeatsPayment { get; set; }
+
+        public SeatChartInforModel()
+        {
+            BookedSeatsNotPayment = Enumerable.Empty<int>();
+            BookedSeatsPayment = Enumerable.Empty<int>();   
+        }
+    }
     public class OrderEditModel
     {
         public OrderModel order { get; set; }
