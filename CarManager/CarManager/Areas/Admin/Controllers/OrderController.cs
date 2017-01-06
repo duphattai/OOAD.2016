@@ -16,7 +16,7 @@ using LocalResources;
 
 namespace CarManager.Areas.Admin.Controllers
 {
-    [CustomAuthorize("Manager")]
+    [CustomAuthorize("Manager", "Salesman")]
     public class OrderController : BaseController
     {
         private readonly ICarService _carService;

@@ -53,11 +53,11 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu btn-dropdown-menu" role="menu">
-                            <li>
+                            @*<li>
                                 <a href="@Url.Action("Detail", new { id = item.IdOrder })">
                                     <i class="fa fa-eye" aria-hidden="true"></i> @Resource.View
                                 </a>
-                            </li>
+                            </li>*@
                             <li>
                                 <a data-toggle="confirmation" href="javascript:void(0)" class="delete_item" id="@string.Format("{0}?page={1}", item.IdOrder, @Model.PageNumber)">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i> @Resource.Delete
